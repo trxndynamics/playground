@@ -79,4 +79,4 @@ cd /etc/nginx/sites-available/
 sudo vi ./playground.vm.conf
 change location root to read /var/www/playground/laravel/public in both instances
 
-nginx -s reload
+sudo nginx -s reload
