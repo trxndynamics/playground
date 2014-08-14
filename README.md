@@ -1,6 +1,8 @@
 playground
 ==========
 
+This is a workflow demo.  Please feel free to ignore areas that are of little interest to yourself.
+
 Pre-requisites:
 
 1.	Vagrant
@@ -68,7 +70,7 @@ Add the line:
 8) Verify location
 
 Open browser window and type in the URL:
-http://playground
+http://playground.vm
 
 You should see 403 Forbidden nginx
 
@@ -80,3 +82,10 @@ sudo vi ./playground.vm.conf
 change location root to read /var/www/playground/laravel/public in both instances
 
 sudo nginx -s reload
+
+10) Verify again
+
+Open browser window and type in the URL:
+http://playground.vm
+
+You should now see the default Laravel 'You have arrived page'.
