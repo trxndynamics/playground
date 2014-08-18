@@ -11,7 +11,6 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+
+include(__DIR__ . '/routing/api.routes.php');
+include(__DIR__ . '/routing/web.routes.php');

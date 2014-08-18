@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -124,6 +124,7 @@ return array(
         'Jenssegers\Mongodb\MongodbServiceProvider',
         'Jenssegers\Mongodb\Auth\ReminderServiceProvider',
         'Jenssegers\Mongodb\Session\SessionServiceProvider',
+        'Cartalyst\Sentry\SentryServiceProvider',
 	),
 
 	/*
@@ -191,6 +192,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
         'Moloquent'       => 'Jenssegers\Mongodb\Model',
+        'Sentry'          => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 	),
 
 );
