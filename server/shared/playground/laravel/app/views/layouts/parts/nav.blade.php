@@ -1,3 +1,4 @@
+@if (Sentry::check())
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -14,3 +15,4 @@
         @include('layouts/parts/topnav')
     </div>
 </nav>
+@endif

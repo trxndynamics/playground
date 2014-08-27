@@ -7,19 +7,21 @@ class AuthController extends BaseController {
             return Redirect::to('/dashboard/');
         }
 
-        try {
-            $user = Sentry::findUserByLogin(Input::get('email'));
-            Sentry::loginAndRemember($user);
-            return Redirect::to('/dashboard/');
-        } catch(\Cartalyst\Sentry\Users\LoginRequiredException $e){
-            //login field is required
-            $error = 'login field required';
-        } catch(\Cartalyst\Sentry\Users\UserNotFoundException $e){
-            //user not found
-            $error = 'user not found';
-        } catch(\Cartalyst\Sentry\Users\UserNotActivatedException $e){
-            //user not activated
-            $error = 'user not activated';
+        if(Request::isMethod('post')){
+            try {
+                $user = Sentry::findUserByLogin(Input::get('email'));
+                Sentry::loginAndRemember($user);
+                return Redirect::to('/dashboard/');
+            } catch(\Cartalyst\Sentry\Users\LoginRequiredException $e){
+                //login field is required
+                $error = 'login field required';
+            } catch(\Cartalyst\Sentry\Users\UserNotFoundException $e){
+                //user not found
+                $error = 'user not found';
+            } catch(\Cartalyst\Sentry\Users\UserNotActivatedException $e){
+                //user not activated
+                $error = 'user not activated';
+            }
         }
 
         return View::make('display/auth/login')
