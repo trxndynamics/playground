@@ -9,6 +9,9 @@ Route::group(array('prefix'=>'auth'), function(){
 });
 
 if(Sentry::check()){
+    Route::get('/start', 'DashboardController@start');
+    Route::post('/start', 'DashboardController@start');
+
     Route::group(array('prefix'=>'dashboard'), function(){
         Route::get('/', 'DashboardController@index');
     });
