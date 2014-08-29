@@ -9,7 +9,8 @@
         "jenssegers/mongodb-session": "*",
         "jenssegers/mongodb-sentry": "*",
         "guzzlehttp/guzzle": "4.*",
-        "fabpot/goutte": "~2.0"
+        "fabpot/goutte": "~2.0",
+        "phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
 		"classmap": [

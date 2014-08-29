@@ -106,16 +106,27 @@ nginx:
         proxy_buffer_size: 128k
         proxy_buffers: '4 256k'
     vhosts:
-        czsuRfJM2Pfr:
+        playground:
             server_name: playground.vm
             server_aliases:
                 - www.playground.vm
-            www_root: /var/www/playground
+            www_root: /var/www/playground/laravel/public
             listen_port: '80'
             location: \.php$
             index_files:
-                - index.html
-                - index.htm
+                - index.php
+            envvars:
+                - 'APP_ENV dev'
+            engine: php
+            ssl: '0'
+            ssl_cert: ''
+            ssl_key: ''
+        rockmongo:
+            server_name: rockmongo.playground.vm
+            www_root: /var/www/rockmongo
+            listen_port: '80'
+            location: \.php$
+            index_files:
                 - index.php
             envvars:
                 - 'APP_ENV dev'
@@ -143,7 +154,7 @@ php:
         display_errors: On
         error_reporting: '-1'
         session.save_path: /var/lib/php/session
-    timezone: America/Chicago
+    timezone: Europe/London
     mod_php: 0
 hhvm:
     install: 0
@@ -222,7 +233,11 @@ mongodb:
     settings:
         auth: 1
         port: '27017'
-    databases: {  }
+    databases:
+        kjOxcRR9m7az:
+            name: playground
+            user: playgrounduser
+            password: playgroundpass
 redis:
     install: '0'
     settings:
