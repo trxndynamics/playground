@@ -15,6 +15,10 @@ if(Sentry::check()){
     Route::group(array('prefix'=>'dashboard'), function(){
         Route::get('/', 'DashboardController@index');
     });
+
+    Route::group(array('prefix'=>'match'), function(){
+        Route::get('/timeline', 'MatchController@timeline');
+    });
 }
 
 //404
