@@ -9,4 +9,8 @@ class DashboardController extends BaseController {
     public function start(){
         return View::make('display/pages/start');
     }
+
+    public function tiles(){
+        return View::make('display/pages/tiles');
+    }
 }

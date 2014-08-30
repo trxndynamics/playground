@@ -14,6 +14,7 @@ if(Sentry::check()){
 
     Route::group(array('prefix'=>'dashboard'), function(){
         Route::get('/', 'DashboardController@index');
+        Route::get('/tiles', 'DashboardController@tiles');
     });
 
     Route::group(array('prefix'=>'match'), function(){

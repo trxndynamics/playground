@@ -1,11 +1,11 @@
 @extends('layouts/master')
 
 @section('additionalCSS')
-<link rel="stylesheet" type="text/css" href="/resource/bootsnipp/content-in-bootstrap-tabs.css" />
+<link rel="stylesheet" type="text/css" href="/resource/bootsnipp/content-in-bootstrap-tabs/content-in-bootstrap-tabs.css" />
 @stop
 
 @section('additionalJS')
-<script type="text/javascript" src="/resource/bootsnipp/content-in-bootstrap-tabs.js"></script>
+<script type="text/javascript" src="/resource/bootsnipp/content-in-bootstrap-tabs/content-in-bootstrap-tabs.js"></script>
 @stop
 
 @section('content')

@@ -1,0 +1,65 @@
+.dynamicTile .col-sm-2.col-xs-4{
+    padding:5px;
+}
+
+.dynamicTile .col-sm-4.col-xs-8{
+    padding:5px;
+}
+
+#tile1{
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
+}
+
+#tile2{
+    background: rgb(0, 0, 0);
+}
+
+#tile3{
+    background: rgb(0, 0, 0);
+}
+
+#tile4{
+    background: rgb(0, 0, 0);
+}
+
+#tile5{
+    background: rgb(0, 0, 0);
+}
+
+#tile6{
+    background: rgb(0, 0, 0);
+}
+
+#tile7{
+    background: #000000;
+}
+
+#tile8{
+    background: rgb(0, 0, 0);
+}
+
+#tile9{
+    background: rgb(0, 0, 0);
+}
+
+#tile10{
+    background: rgb(0, 0, 0);
+}
+
+.tilecaption{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    margin:0 0 0 10%!important;
+    text-align: center;
+    color:white;
+    font-family: Segoe UI;
+    font-weight: lighter;
+}
+
+div.item:hover {
+    cursor:pointer;
+}
