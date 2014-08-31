@@ -17,6 +17,10 @@ if(Sentry::check()){
         Route::get('/tiles', 'DashboardController@tiles');
     });
 
+    Route::group(array('notifications'), function(){
+        Route::get('/notifications/players', 'NotificationsController@players');
+    });
+
     Route::group(array('prefix'=>'match'), function(){
         Route::get('/timeline', 'MatchController@timeline');
     });
