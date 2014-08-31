@@ -7,12 +7,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Playground</a>
+        <a class="navbar-brand" href="index.html">Football Manager</a>
     </div>
 
+    @if (isset($user->club))
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         @include('layouts/parts/sidenav')
         @include('layouts/parts/topnav')
     </div>
+    @endif
 </nav>
 @endif

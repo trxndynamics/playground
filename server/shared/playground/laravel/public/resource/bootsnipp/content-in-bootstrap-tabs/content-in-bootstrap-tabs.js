@@ -36,6 +36,7 @@ $(function(){
         $('#finalLeague').val($('#selectLeague option:selected').text());
         $('#finalClub').val($('#selectClub option:selected').text());
         $('#finalGender').val($('input[name="gender"]:checked').val());
+        $('#finalAim').val($('#selectAims option:selected').text());
 
         $('#finalForm').submit();
     });

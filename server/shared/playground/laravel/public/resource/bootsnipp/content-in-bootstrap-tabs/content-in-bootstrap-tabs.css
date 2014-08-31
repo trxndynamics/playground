@@ -196,7 +196,7 @@ li.active:after {
 @media( max-width : 585px ){
 
     .board {
-        width: 90%;
+        width: 100%;
         height:auto !important;
     }
     span.round-tabs {

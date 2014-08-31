@@ -1,3 +1,6 @@
+<?php
+$user = Sentry::getUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,10 +31,14 @@
     </head>
 <body>
 
+@if(isset($hideNav))
+    @yield('content')
+@else
 <div id="wrapper">
     @include('layouts/parts/nav')
     @yield('content')
 </div>
+@endif
 
 @yield('footerScript')
 <!-- /#wrapper -->

@@ -9,6 +9,8 @@ Route::group(array('prefix'=>'auth'), function(){
 });
 
 if(Sentry::check()){
+    $user = Sentry::getUser();
+
     Route::get('/start', 'DashboardController@start');
     Route::post('/start', 'DashboardController@start');
 
@@ -23,6 +25,10 @@ if(Sentry::check()){
 
     Route::group(array('prefix'=>'match'), function(){
         Route::get('/timeline', 'MatchController@timeline');
+    });
+
+    App::missing(function($exception){
+        return Redirect::to('/start');
     });
 }
 

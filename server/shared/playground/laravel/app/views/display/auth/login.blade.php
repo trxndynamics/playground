@@ -1,7 +1,17 @@
 @extends('layouts/master')
 @section('content')
 
-{{ $error }}
+@if ($error !== null)
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="alert alert-dismissable alert-warning">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <h4>Warning!</h4>
+            <p>Incorrect login credentials</p>
+        </div>
+    </div>
+</div>
+@endif
 
 <div class="container">
     <div class="row">

@@ -4,14 +4,14 @@ class AuthController extends BaseController {
 
     public function login(){
         if(Sentry::check()){
-            return Redirect::to('/dashboard/');
+            return Redirect::to('/dashboard/tiles');
         }
 
         if(Request::isMethod('post')){
             try {
                 $user = Sentry::findUserByLogin(Input::get('email'));
                 Sentry::loginAndRemember($user);
-                return Redirect::to('/dashboard/');
+                return Redirect::to('/dashboard/tiles');
             } catch(\Cartalyst\Sentry\Users\LoginRequiredException $e){
                 //login field is required
                 $error = 'login field required';
@@ -29,14 +29,16 @@ class AuthController extends BaseController {
     }
 
     public function logout(){
-        var_dump(Sentry::check());
         Sentry::logout();
-        var_dump(Sentry::check());
 
         return Redirect::to('/auth/login');
     }
 
     public function register(){
+        if(Request::isMethod('post')){
+            if(Input::get('password') !== Input::get('password_confirm'))           $error = 'passwords does not match';
+            if(filter_var(Input::get('email'), FILTER_VALIDATE_EMAIL) === FALSE)    $error = 'email address is not valid';
+        }
 
         if((Request::isMethod('post') &&
             (Input::get('password') == Input::get('password_confirm'))) &&
@@ -56,6 +58,10 @@ class AuthController extends BaseController {
                         'user.update' => 1,
                     ),
                 ));
+
+                $user = Sentry::findUserByLogin(Input::get('email'));
+                Sentry::loginAndRemember($user);
+                return Redirect::to('/dashboard/tiles');
             }
             catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
             {

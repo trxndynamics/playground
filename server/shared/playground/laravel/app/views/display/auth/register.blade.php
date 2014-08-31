@@ -1,6 +1,22 @@
 @extends('layouts/master')
 @section('content')
 
+@if ($error !== null)
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="alert alert-dismissable alert-danger">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <h4>Warning!</h4>
+            <p>Unable to create new user account due to one of the following reasons: <br /><br />
+                Email address is not valid<br />
+                Email is already in use<br />
+                Passwords do not match
+            </p>
+        </div>
+    </div>
+</div>
+@endif
+
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">

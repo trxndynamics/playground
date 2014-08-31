@@ -7,10 +7,42 @@ class DashboardController extends BaseController {
     }
 
     public function start(){
-        return View::make('display/pages/start');
+        $user = Sentry::getUser();
+        if(isset($user->club))  return Redirect::to('/dashboard/tiles');
+
+        $aims       = ['League and Cup Success', 'League Success', 'Cup Success', 'Survival', 'Financial Security'];
+        $leagues    = ['Bundesliga'];
+
+        if(Request::isMethod('post')){
+
+            $user->aim      = Input::get('aim');
+            $user->club     = Input::get('club');
+            $user->forename = Input::get('forename');
+            $user->gender   = Input::get('gender');
+            $user->league   = Input::get('league');
+            $user->surname  = Input::get('surname');
+
+            if(
+                in_array($user->league, $leagues) &&
+                in_array($user->aim, $aims)
+            ){
+                $user->save();
+            }
+
+            return Redirect::to('/dashboard/tiles');
+        }
+
+        return View::make('display/pages/start')
+            ->with('aims', $aims)
+            ->with('leagues', $leagues)
+            ->with('hideNav', true)
+        ;
     }
 
     public function tiles(){
+        $user = Sentry::getUser();
+
+        if(!isset($user->club)) return Redirect::to('/start');
         return View::make('display/pages/tiles');
     }
 }
