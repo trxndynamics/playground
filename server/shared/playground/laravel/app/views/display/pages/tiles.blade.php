@@ -152,7 +152,7 @@
             <div id="tile3" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/squad/fitness">
                             <h3 class="tilecaption"><i class="fa fa-medkit fa-4x"></i> Injuries</h3>
                         </div>
                     </div>

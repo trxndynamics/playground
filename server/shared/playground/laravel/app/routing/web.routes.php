@@ -27,6 +27,16 @@ if(Sentry::check()){
         Route::get('/timeline', 'MatchController@timeline');
     });
 
+    Route::group(array('prefix'=>'player'), function(){
+        Route::get('/stats', 'PlayerController@stats');
+    });
+
+    Route::group(array('prefix'=>'squad'), function(){
+        Route::get('/fitness', 'SquadController@fitness');
+    });
+
+    Route::get('/highlights', 'SocialController@highlights');
+
     App::missing(function($exception){
         return Redirect::to('/start');
     });
