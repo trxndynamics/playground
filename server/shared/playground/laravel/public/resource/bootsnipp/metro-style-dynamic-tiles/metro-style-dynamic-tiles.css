@@ -12,39 +12,48 @@
 }
 
 #tile2{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile3{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile4{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile5{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile6{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile7{
-    background: #000000;
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile8{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile9{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 #tile10{
-    background: rgb(0, 0, 0);
+    background-image: url('/resource/bootsnipp/metro-style-dynamic-tiles/transparent.png');
+    background-size: cover;
 }
 
 .tilecaption{

@@ -10,7 +10,8 @@
         "jenssegers/mongodb-sentry": "*",
         "guzzlehttp/guzzle": "4.*",
         "fabpot/goutte": "~2.0",
-        "phpunit/phpunit": "3.7.*"
+        "phpunit/phpunit": "3.7.*",
+        "google/apiclient": "1.0.*@beta"
 	},
 	"autoload": {
 		"classmap": [

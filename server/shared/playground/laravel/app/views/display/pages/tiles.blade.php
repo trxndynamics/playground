@@ -102,7 +102,7 @@
             <div id="tile7" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/highlights">
                             <h3 class="tilecaption"><i class="fa fa-youtube-play fa-4x"></i> Highlights</h3>
                         </div>
                     </div>
