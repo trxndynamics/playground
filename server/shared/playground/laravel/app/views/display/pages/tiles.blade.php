@@ -113,14 +113,14 @@
             <div id="tile8" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item">
                             <h3 class="tilecaption"><i class="fa fa-line-chart fa-4x"></i> Finances</h3>
                         </div>
-                        <div class="item">
+                        <div class="item" data-url="/player/stats">
                             <h3 class="tilecaption"><i class="fa fa-pie-chart fa-4x"></i> Statistics</h3>
                         </div>
-                        <div class="item">
-                            <h3 class="tilecaption"><i class="fa fa-area-chart fa-4x"></i> Position</h3>
+                        <div class="item active">
+                            <h3 class="tilecaption"><i class="fa fa-area-chart fa-4x"></i> League Position</h3>
                         </div>
                     </div>
                 </div>
