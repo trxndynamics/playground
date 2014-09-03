@@ -31,7 +31,7 @@
                 <div class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/league/calendar">
                             <h3 class="tilecaption"><i class="fa fa-calendar fa-4x"></i> Fixtures</h3>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
             <div id="tile4" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/player/search">
                             <h3 class="tilecaption"><i class="fa fa-search fa-4x"></i> Scouting</h3>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                         <div class="item" data-url="/player/stats">
                             <h3 class="tilecaption"><i class="fa fa-pie-chart fa-4x"></i> Statistics</h3>
                         </div>
-                        <div class="item active">
+                        <div class="item active" data-url="/league/table">
                             <h3 class="tilecaption"><i class="fa fa-area-chart fa-4x"></i> League Position</h3>
                         </div>
                     </div>

@@ -29,10 +29,16 @@ if(Sentry::check()){
 
     Route::group(array('prefix'=>'player'), function(){
         Route::get('/stats', 'PlayerController@stats');
+        Route::get('/search', 'PlayerController@search');
     });
 
     Route::group(array('prefix'=>'squad'), function(){
         Route::get('/fitness', 'SquadController@fitness');
+    });
+
+    Route::group(array('prefix'=>'league'), function(){
+        Route::get('/table', 'LeagueController@table');
+        Route::get('/calendar', 'LeagueController@calendar');
     });
 
     Route::get('/highlights', 'SocialController@highlights');
