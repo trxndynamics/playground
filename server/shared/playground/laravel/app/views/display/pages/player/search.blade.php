@@ -32,30 +32,16 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($players as $player)
                 <tr>
-                    <td>Xherdan Shaqiri</td>
-                    <td>Switzerland</td>
-                    <td>Bayern Munich</td>
-                    <td>Bundesliga</td>
-                    <td>22</td>
-                    <td>£15m</td>
+                    <td>{{ $player->misc['name'] }}</td>
+                    <td>{{ $player->misc['nation'] }}</td>
+                    <td>{{ $player->misc['club'] }}</td>
+                    <td>{{ $player->misc['league'] }}</td>
+                    <td>{{ $player->misc['age'] }}</td>
+                    <td>£VALUE</td>
                 </tr>
-                <tr>
-                    <td>Granit Xhaka</td>
-                    <td>Switzerland</td>
-                    <td>Borussia Mochengladbach</td>
-                    <td>Bundesliga</td>
-                    <td>21</td>
-                    <td>£4m</td>
-                </tr>
-                <tr>
-                    <td>Rafael Van der Vaart</td>
-                    <td>Netherlands</td>
-                    <td>Hamburger SV</td>
-                    <td>Bundesliga</td>
-                    <td>31</td>
-                    <td>£3m</td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
