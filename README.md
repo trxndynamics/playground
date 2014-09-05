@@ -89,3 +89,12 @@ Open browser window and type in the URL:
 http://playground.vm
 
 You should now see the default Laravel 'You have arrived page'.
+
+
+---------------------------
+
+
+DATA INSTALL
+
+There is intended to be an update where you can install the latest game data by running a mongoimport with the appropriate data file.
+Club images will not be made available within this repository.
