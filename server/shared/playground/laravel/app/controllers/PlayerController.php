@@ -4,6 +4,7 @@ class PlayerController extends BaseController {
 
     public function search(){
         $players = Player::project(array(
+            '_id',
             'misc.age',
             'misc.club',
             'misc.league',
@@ -17,8 +18,10 @@ class PlayerController extends BaseController {
             ->with('players', $players);
     }
 
-    public function stats(){
-        return View::make('display/pages/player/stats');
+    public function stats($id){
+        $player = Player::find($id);
+
+        return View::make('display/pages/player/stats')->with('player',$player);
     }
 
 }

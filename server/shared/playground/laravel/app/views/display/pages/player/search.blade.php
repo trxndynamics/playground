@@ -35,7 +35,7 @@
                 <tbody>
                 @foreach($players as $player)
                 <tr>
-                    <td>{{ $player->misc['name'] }}</td>
+                    <td><a href="/player/stats/{{ $player->_id }}">{{ $player->misc['name'] }}</a></td>
                     <td>{{ $player->misc['nation'] }}</td>
                     <td>{{ $player->misc['club'] }}</td>
                     <td>{{ $player->misc['league'] }}</td>
