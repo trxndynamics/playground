@@ -34,6 +34,7 @@ if(Sentry::check()){
 
     Route::group(array('prefix'=>'squad'), function(){
         Route::get('/fitness', 'SquadController@fitness');
+        Route::get('/current', 'SquadController@currentSquad');
     });
 
     Route::group(array('prefix'=>'league'), function(){
@@ -42,6 +43,15 @@ if(Sentry::check()){
     });
 
     Route::get('/highlights', 'SocialController@highlights');
+
+    Route::group(array('prefix'=>'user'), function(){
+        Route::get('/profile', 'UserController@profile');
+        Route::get('/settings', 'UserController@settings');
+    });
+
+    Route::group(array('prefix'=>'team'), function(){
+        Route::get('/display', 'TeamController@displayTeam');
+    });
 
     App::missing(function($exception){
         return Redirect::to('/start');

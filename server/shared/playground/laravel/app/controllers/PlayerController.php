@@ -9,6 +9,7 @@ class PlayerController extends BaseController {
             'misc.league',
             'misc.name',
             'misc.nation',
+            'misc.position',
             'playerCard.attributes'
         ))->get();
 

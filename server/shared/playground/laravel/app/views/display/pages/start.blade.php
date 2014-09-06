@@ -142,7 +142,7 @@
                                     <label class="col-md-4 control-label" for="selectClub">Select Club</label>
                                     <div class="col-md-4">
                                         <select id="selectClub" name="selectClub" class="form-control">
-                                            <option value="Bayer Leverkusen">Bayer Leverkusen</option>
+                                            <option value="Bayer 04 Leverkusen">Bayer Leverkusen</option>
                                             <option value="FC Bayern Munchen">FC Bayern Munchen</option>
                                             <option value="Borussia Dortmund">Borussia Dortmund</option>
                                             <option value="Borussia Mochengladbach">Borussia Mochengladbach</option>

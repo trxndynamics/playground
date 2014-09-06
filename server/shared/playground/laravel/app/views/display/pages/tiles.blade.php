@@ -42,7 +42,7 @@
             <div id="tile9" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/squad/current">
                             <h3 class="tilecaption"><i class="fa fa-male fa-4x"></i> Squad</h3>
                         </div>
                     </div>
