@@ -1,7 +1,7 @@
 @extends('layouts/master')
 
 @section('additionalCSS')
-<link rel="stylesheet" type="text/css" media="all" href="/resource/bootsnipp/event-list/even-list.css">
+<link rel="stylesheet" type="text/css" media="all" href="/resource/bootsnipp/event-list/event-list.css">
 @stop
 
 @section('content')
