@@ -54,3 +54,11 @@ if ( ! function_exists('app_images_kits_path'))
         return ($incPublicPath===true) ? public_path().'/resource/images/kits/' : '/resource/images/kits/';
     }
 }
+
+if ( !function_exists('app_images_match_path'))
+{
+    function app_images_match_path($incPublicPath=true)
+    {
+        return ($incPublicPath===true) ? public_path().'/resource/images/match/' : '/resource/images/match/';
+    }
+}

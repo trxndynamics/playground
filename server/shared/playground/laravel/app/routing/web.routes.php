@@ -25,6 +25,7 @@ if(Sentry::check()){
 
     Route::group(array('prefix'=>'match'), function(){
         Route::get('/timeline', 'MatchController@timeline');
+        Route::get('/squad/select', 'MatchController@selectSquad');
     });
 
     Route::group(array('prefix'=>'player'), function(){
