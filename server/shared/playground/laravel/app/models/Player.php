@@ -16,5 +16,15 @@ class Player extends Moloquent {
     protected $hidden = array();
 
 
+    public function getImageFace(){
+        return isset($this->playerCard['picture']) ? app_images_faces_path(false).$this->playerCard['picture'] : null;
+    }
 
+    public function getImageNation(){
+        return isset($this->playerCard['nation']) ? app_images_nation_path(false).$this->playerCard['nation'] : null;
+    }
+
+    public function getImageClub(){
+        return isset($this->playerCard['club']) ? app_images_club_crest_path(false).$this->playerCard['club'] : null;
+    }
 }

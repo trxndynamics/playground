@@ -11,7 +11,7 @@ class PlayerController extends BaseController {
             'misc.name',
             'misc.nation',
             'misc.position',
-            'playerCard.attributes'
+            'playerCard'
         ))->get();
 
         return View::make('display/pages/player/search')

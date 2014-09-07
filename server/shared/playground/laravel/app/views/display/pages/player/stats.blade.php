@@ -4,15 +4,11 @@
 <link rel="stylesheet" type="text/css" media="all" href="/resource/bootsnipp/skilled-progress-bars/skilled-progress-bars.css">
 @stop
 
-<?php
-$face = isset($player->playerCard['picture']) ? $player->playerCard['picture'] : null;
-?>
-
 @section('content')
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1><?php if($face !== null){ ?><img src="/resource/images/player/faces/{{ $face }}" width="100" /><?php } ?>{{ $player->misc['name'] }} <small>Statistics and more</small></h1>
+            <h1><img src="{{ $player->getImageFace() }}" width="100" /> <img src="{{ $player->getImageNation() }}" width="100" /> {{ $player->misc['name'] }} <small>Statistics and more</small></h1>
         </div>
     </div>
     <div class="row">

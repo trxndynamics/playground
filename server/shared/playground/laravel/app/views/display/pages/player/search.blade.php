@@ -35,9 +35,9 @@
                 <tbody>
                 @foreach($players as $player)
                 <tr>
-                    <td><a href="/player/stats/{{ $player->_id }}">{{ $player->misc['name'] }}</a></td>
-                    <td>{{ $player->misc['nation'] }}</td>
-                    <td>{{ $player->misc['club'] }}</td>
+                    <td><img src="{{ $player->getImageFace() }}" width="25" /> <a href="/player/stats/{{ $player->_id }}">{{ $player->misc['name'] }}</a></td>
+                    <td><img src="{{ $player->getImageNation() }}" width="25" /> {{ $player->misc['nation'] }}</td>
+                    <td><img src="{{ $player->getImageClub() }}" width="25" /> {{ $player->misc['club'] }}</td>
                     <td>{{ $player->misc['league'] }}</td>
                     <td>{{ $player->misc['age'] }}</td>
                     <td>{{ $player->misc['position'] }}</td>
