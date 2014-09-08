@@ -16,7 +16,7 @@
                 <div class="carousel slide" data-ride="carousel">
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active" data-url="/match/timeline">
+                        <div class="item active" data-url="/match/squad/select">
                             <h3 class="tilecaption"><i class="fa fa-soccer-ball-o fa-4x"></i>Matchday</h3>
                         </div>
                         <div class="item" data-url="/match/timeline">

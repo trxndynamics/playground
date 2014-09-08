@@ -11,6 +11,38 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="timeline">
+                    <li><div class="tldate">Pre Match</div></li>
+
+                    <li class="timeline-inverted">
+                        <div class="tl-circ"></div>
+                        <div class="timeline-panel">
+                            <div class="tl-heading">
+                                <h4>{{ $user->club }} Squad Announced</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2:30 pm</small></p>
+                            </div>
+                            <div class="tl-body">
+                                @foreach($players as $player)
+                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="timeline">
+                        <div class="tl-circ"></div>
+                        <div class="timeline-panel">
+                            <div class="tl-heading">
+                                <h4>Opposition Squad Announced</h4>
+                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2:30 pm</small></p>
+                            </div>
+                            <div class="tl-body">
+                                @foreach($players as $player)
+                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    </li>
+
                     <li><div class="tldate">Kick Off</div></li>
 
                     <li>

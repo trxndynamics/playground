@@ -3,10 +3,23 @@
 class MatchController extends BaseController {
 
     public function timeline(){
-        return View::make('display/pages/timeline');
+        $user       = Sentry::getUser();
+        $userSquad  = Player::whereIn('_id',$user->currentSquad)->get();
+
+        return View::make('display/pages/timeline')
+            ->with('players', $userSquad)
+            ->with('user', $user)
+        ;
     }
 
     public function selectSquad(){
+        if(Request::isMethod('post')){
+            $user = Sentry::getUser();
+            $user->currentSquad = Input::get('player');
+            $user->save();
+            return Redirect::to('/match/timeline');
+        }
+
         $projectedFields = array(
             'misc.age',
             'misc.name',

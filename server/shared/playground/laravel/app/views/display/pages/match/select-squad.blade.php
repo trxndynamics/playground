@@ -13,9 +13,11 @@
 <div class="container">
     <h3>Select Squad</h3>
     <hr>
-    <div class="row" id="playerList">
+    <form method="post" action="/match/squad/select">
+        <div class="row" id="playerList">
 
-    </div>
+        </div>
+    </form>
     <hr />
     <div class="row">
         <div class="panel panel-primary filterable">
