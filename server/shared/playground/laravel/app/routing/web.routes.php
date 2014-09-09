@@ -55,6 +55,10 @@ if(Sentry::check()){
         Route::get('/display', 'TeamController@displayTeam');
     });
 
+    Route::group(array('prefix'=>'fixture'), function(){
+        Route::get('/create', 'MatchController@create');
+    });
+
     App::missing(function($exception){
         return Redirect::to('/start');
     });

@@ -1,5 +1,7 @@
 @extends('layouts/master')
 
+<?php $user = Sentry::getUser(); ?>
+
 @section('additionalCSS')
 <link rel="stylesheet" type="text/css" media="all" href="/resource/bootsnipp/metro-style-dynamic-tiles/metro-style-dynamic-tiles.css">
 @stop
@@ -20,7 +22,7 @@
                             <h3 class="tilecaption"><i class="fa fa-soccer-ball-o fa-4x"></i>Matchday</h3>
                         </div>
                         <div class="item" data-url="/match/timeline">
-                            <h3 class="tilecaption">Team Name v Team Name</h3>
+                            <h3 class="tilecaption"></h3>
                         </div>
                     </div>
                 </div>

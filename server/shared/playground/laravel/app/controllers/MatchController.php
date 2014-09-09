@@ -2,6 +2,17 @@
 
 class MatchController extends BaseController {
 
+    public function create(){
+        //todo use the team model instead of the player model to populate this information
+        $listOfPlayers = Player::project('misc.club')->get();
+
+        foreach($listOfPlayers as $playerItem){
+            $clubList[$playerItem->misc['club']] = $playerItem->misc['club'];
+        }
+
+        return View::make('display/pages/fixture/create')->with('teams', array_keys($clubList));
+    }
+
     public function timeline(){
         $user       = Sentry::getUser();
         $userSquad  = Player::whereIn('_id',$user->currentSquad)->get();
