@@ -46,6 +46,10 @@
                 <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
                         <ul class="nav nav-tabs">
+
+                            @foreach($leagues as $league)
+                            <li><a href="#tab2default" data-toggle="tab">{{ $league->name }}</a></li>
+                            @endforeach
                             <li class="active"><a href="#tab1default" data-toggle="tab">Bundesliga</a></li>
                             <li><a href="#tab2default" data-toggle="tab">Barclays PL</a></li>
                             <li><a href="#tab3default" data-toggle="tab">La Liga</a></li>
@@ -62,8 +66,10 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="tab1default">
-                                @foreach($teams as $team)
-                                <a href="#">{{$team}}</a><br />
+                                @foreach($leagues as $league)
+                                    @foreach($league->teams as $teamName)
+                                    <a href="#">{{$teamName}}</a><br />
+                                    @endforeach
                                 @endforeach
                             </div>
                             <div class="tab-pane fade" id="tab2default">Default 2</div>

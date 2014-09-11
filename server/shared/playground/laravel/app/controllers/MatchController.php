@@ -3,14 +3,8 @@
 class MatchController extends BaseController {
 
     public function create(){
-        //todo use the team model instead of the player model to populate this information
-        $listOfPlayers = Player::project('misc.club')->get();
-
-        foreach($listOfPlayers as $playerItem){
-            $clubList[$playerItem->misc['club']] = $playerItem->misc['club'];
-        }
-
-        return View::make('display/pages/fixture/create')->with('teams', array_keys($clubList));
+        $leagues = League::all();
+        return View::make('display/pages/fixture/create')->with('leagues', $leagues);
     }
 
     public function timeline(){
