@@ -3,6 +3,8 @@
 class MatchController extends BaseController {
 
     public function create(){
+//        var_dump(Input::all());
+
         $leagues = League::all();
         return View::make('display/pages/fixture/create')->with('leagues', $leagues);
     }

@@ -5,7 +5,8 @@
 @stop
 
 @section('additionalJS')
-<script type="text/javascript" src="/resource/bootsnipp/simple-datepicker-with-momentjs/simple-datepicker-with-momentjs.js" />
+<script type="text/javascript" src="/resource/bootsnipp/simple-datepicker-with-momentjs/simple-datepicker-with-momentjs.js"></script>
+<script type="text/javascript" src="/resource/js/create-fixture.js"></script>
 @stop
 
 @section('content')
@@ -29,7 +30,7 @@
                     <span data-toggle="datepicker" data-type="subtract" class="fa fa-angle-left"></span>
                     <span data-toggle="datepicker" data-type="add" class="fa fa-angle-right"></span>
                     <div class="input-group input-datepicker">
-                        <input type="text" class="form-control" data-format="YYYY/MM/DD" placeholder="YYYY/MM/DD">
+                        <input id="selectedDate" type="text" class="form-control" data-format="YYYY/MM/DD" placeholder="YYYY/MM/DD">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button">Go!</button>
                     </span>
@@ -46,18 +47,12 @@
                 <div class="panel with-nav-tabs panel-default">
                     <div class="panel-heading">
                         <ul class="nav nav-tabs">
-
-                            @foreach($leagues as $league)
-                            <li><a href="#tab2default" data-toggle="tab">{{ $league->name }}</a></li>
-                            @endforeach
-                            <li class="active"><a href="#tab1default" data-toggle="tab">Bundesliga</a></li>
-                            <li><a href="#tab2default" data-toggle="tab">Barclays PL</a></li>
-                            <li><a href="#tab3default" data-toggle="tab">La Liga</a></li>
                             <li class="dropdown">
-                                <a href="#" data-toggle="dropdown">Other <span class="caret"></span></a>
+                                <a href="#" data-toggle="dropdown">Pick a League <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
-                                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                    @foreach($leagues as $id=>$league)
+                                    <li><a href="#tab{{$id+1}}default" data-toggle="tab">{{ $league->name }}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
@@ -65,23 +60,26 @@
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="tab1default">
-                                @foreach($leagues as $league)
-                                    @foreach($league->teams as $teamName)
-                                    <a href="#">{{$teamName}}</a><br />
-                                    @endforeach
+
+                            @foreach($leagues as $id => $league)
+                            <div class="tab-pane fade in active" id="tab{{$id+1}}default">
+                                @foreach($league->teams as $teamName)
+                                <a href="#" class="teamSelect">{{$teamName}}</a><br />
                                 @endforeach
                             </div>
-                            <div class="tab-pane fade" id="tab2default">Default 2</div>
-                            <div class="tab-pane fade" id="tab3default">Default 3</div>
-                            <div class="tab-pane fade" id="tab4default">Default 4</div>
-                            <div class="tab-pane fade" id="tab5default">Default 5</div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
+                <button id="submit">Submit</button>
             </div>
         </div>
     </div>
+
+    <form id="finalForm" action="/fixture/create" method="post">
+        <input type="hidden" name="selectedDate" id="finalDate" value="" />
+        <input type="hidden" name="club" id="finalClub" value="" />
+    </form>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 </section>

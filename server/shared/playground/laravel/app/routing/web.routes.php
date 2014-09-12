@@ -56,6 +56,7 @@ if(Sentry::check()){
     });
 
     Route::group(array('prefix'=>'fixture'), function(){
+        Route::post('/create', 'MatchController@create');
         Route::get('/create', 'MatchController@create');
     });
 
