@@ -67,7 +67,11 @@ $tomorrow = \Carbon\Carbon::now()->addDay();
 
                             @foreach($leagues as $id => $league)
                             <div class="tab-pane fade in active" id="tab{{$id+1}}default">
-                                @foreach($league->teams as $teamName)
+                                <?php
+                                $teams = $league->teams;
+                                natcasesort($teams);
+                                ?>
+                                @foreach($teams as $teamName)
                                 <a href="#" class="teamSelect">{{$teamName}}</a><br />
                                 @endforeach
                             </div>

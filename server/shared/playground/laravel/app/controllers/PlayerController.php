@@ -12,7 +12,9 @@ class PlayerController extends BaseController {
             'misc.nation',
             'misc.position',
             'playerCard'
-        ))->get();
+        ))
+        ->orderBy('misc.name')
+        ->get();
 
         return View::make('display/pages/player/search')
             ->with('players', $players);
