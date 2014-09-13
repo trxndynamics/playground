@@ -21,9 +21,11 @@
                         <div class="item active" data-url="/match/squad/select">
                             <h3 class="tilecaption"><i class="fa fa-soccer-ball-o fa-4x"></i>Matchday</h3>
                         </div>
+                        @if($nextMatch !== null)
                         <div class="item" data-url="/match/timeline">
-                            <h3 class="tilecaption"></h3>
+                            <h3 class="tilecaption">{{$nextMatch->home}} v {{$nextMatch->away}}</h3>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

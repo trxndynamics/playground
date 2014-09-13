@@ -3,7 +3,38 @@
 class MatchController extends BaseController {
 
     public function create(){
-//        var_dump(Input::all());
+        $user = Sentry::getUser();
+
+        if(Request::isMethod('post')){
+            $selectedDate       = \Carbon\Carbon::parse(Input::get('selectedDate'));
+            $selectedClub       = Input::get('club');
+            $selectedLocation   = strtolower(Input::get('location'));
+
+            $match = new Match();
+            $match->date            = $selectedDate;
+            $match->dateTimestamp   = $selectedDate->timestamp;
+            $match->userId          = $user->id;
+            $match->location        = $selectedLocation;
+
+            switch($selectedLocation){
+                case "home":
+                    $match->home = $user->club;
+                    $match->away = $selectedClub;
+                    break;
+                case "away":
+                    $match->home = $selectedClub;
+                    $match->away = $user->club;
+                    break;
+                case "neutral":
+                    $match->home = $selectedClub;
+                    $match->away = $user->club;
+                    break;
+            }
+
+            $match->save();
+
+            return Redirect::to('/league/calendar');
+        }
 
         $leagues = League::all();
         return View::make('display/pages/fixture/create')->with('leagues', $leagues);

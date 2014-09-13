@@ -41,8 +41,15 @@ class DashboardController extends BaseController {
 
     public function tiles(){
         $user = Sentry::getUser();
-
         if(!isset($user->club)) return Redirect::to('/start');
-        return View::make('display/pages/tiles');
+
+        $nextMatch = Match::where('userId','=',$user->id)
+            ->where('dateTimestamp','>',time())
+            ->orderBy('date')
+            ->first();
+
+        return View::make('display/pages/tiles')
+            ->with('nextMatch', $nextMatch)
+        ;
     }
 }

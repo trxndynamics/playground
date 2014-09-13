@@ -3,6 +3,9 @@ $(document).ready(function(){
         var submittedDate = $('.weekday').text()+' '+$('.date').text()+' '+$('.year').text();
         $('#finalDate').val(submittedDate);
 
+
+        $('#finalLocation').val($( "#locationSelect option:selected" ).text());
+
         $('#finalForm').submit();
     });
 

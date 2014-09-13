@@ -10,6 +10,10 @@
 @stop
 
 @section('content')
+<?php
+
+$tomorrow = \Carbon\Carbon::now()->addDay();
+?>
 <section>
     <div class="container">
         <div class="row">
@@ -21,11 +25,11 @@
             <div class="col-sm-6">
                 <h2>Pick a Date</h2>
                 <hr/>
-                <div class="date-picker"  data-date="2014/09/02" data-keyboard="true">
+                <div class="date-picker"  data-date="{{ $tomorrow->format('Y/m/d') }}" data-keyboard="true">
                     <div class="date-container pull-left">
-                        <h4 class="weekday">Monday</h4>
-                        <h2 class="date">Februray 4th</h2>
-                        <h4 class="year pull-right">2014</h4>
+                        <h4 class="weekday">{{ $tomorrow->format('l') }}</h4>
+                        <h2 class="date">{{ $tomorrow->format('m jS') }}</h2>
+                        <h4 class="year pull-right">{{ $tomorrow->format('Y') }}</h4>
                     </div>
                     <span data-toggle="datepicker" data-type="subtract" class="fa fa-angle-left"></span>
                     <span data-toggle="datepicker" data-type="add" class="fa fa-angle-right"></span>
@@ -71,14 +75,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="panel-body">
+                    <div class="tab-content">
+                        Pick a Location:
+                        <select name="locationSelect" id="locationSelect">
+                            <option value="home">Home</option>
+                            <option value="away">Away</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+                    </div>
+                </div>
                 <button id="submit">Submit</button>
             </div>
         </div>
+
+
     </div>
 
     <form id="finalForm" action="/fixture/create" method="post">
         <input type="hidden" name="selectedDate" id="finalDate" value="" />
         <input type="hidden" name="club" id="finalClub" value="" />
+        <input type="hidden" name="location" id="finalLocation" value="" />
     </form>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
