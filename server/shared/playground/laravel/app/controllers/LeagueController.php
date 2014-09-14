@@ -3,7 +3,11 @@
 class LeagueController extends BaseController {
 
     public function table(){
-        return View::make('display/pages/league/table');
+        $user = Sentry::getUser();
+        $team   = Team::where('name','=',$user->club)->first();
+        $league = League::where('name','=',$team->league)->first();
+
+        return View::make('display/pages/league/table')->with('league',$league);
     }
 
     public function calendar(){
