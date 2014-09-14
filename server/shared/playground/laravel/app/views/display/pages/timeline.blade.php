@@ -32,11 +32,18 @@
                         <div class="tl-circ"></div>
                         <div class="timeline-panel">
                             <div class="tl-heading">
-                                <h4>Opposition Squad Announced</h4>
+                                <h4>{{ $team->name }} Squad Announced</h4>
                                 <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2:30 pm</small></p>
                             </div>
                             <div class="tl-body">
-                                @foreach($players as $player)
+                                @foreach($oppositionSquad as $player)
+                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+                                @endforeach
+                                <br />
+                                ------<br />
+                                Bench<br />
+                                <br />
+                                @foreach($oppositionBench as $player)
                                 <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
                                 @endforeach
                             </div>
