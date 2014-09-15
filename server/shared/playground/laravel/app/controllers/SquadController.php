@@ -3,7 +3,18 @@
 class SquadController extends BaseController {
 
     public function fitness(){
-        return View::make('display/pages/squad/fitness');
+        $projectedFields = array(
+            'misc.age',
+            'misc.name',
+            'misc.nation',
+            'misc.position',
+            'playerCard',
+        );
+
+        $user       = Sentry::getUser();
+        $players    = Player::project($projectedFields)->where('misc.club','=',$user->club)->get();
+
+        return View::make('display/pages/squad/fitness')->with('players',$players);
     }
 
     public function currentSquad(){

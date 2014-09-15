@@ -11,146 +11,41 @@
             <h1>Squad Fitness <small>Injuries and more</small></h1>
         </div>
     </div>
-    <div class="row">
-        <h4>Strikers</h4>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                <span class="sr-only">86%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">86%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%">
-                <span class="sr-only">88%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">88%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-                <span class="sr-only">72%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">72%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
-                <span class="sr-only">68%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">68%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%">
-                <span class="sr-only">56%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">56%</span>
-        </div>
-    </div>
 
-    <div class="row">
-        <h4>Midfielders</h4>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                <span class="sr-only">86%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">86%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%">
-                <span class="sr-only">88%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">88%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-                <span class="sr-only">72%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">72%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
-                <span class="sr-only">68%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">68%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%">
-                <span class="sr-only">56%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">56%</span>
-        </div>
-    </div>
+<?php
 
-    <div class="row">
-        <h4>Defenders</h4>
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                <span class="sr-only">86%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">86%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%">
-                <span class="sr-only">88%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">88%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-                <span class="sr-only">72%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">72%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
-                <span class="sr-only">68%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">68%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%">
-                <span class="sr-only">56%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">56%</span>
-        </div>
-    </div>
+$processList = [
+    'Strikers'      => ['ST','CF'],
+    'Midfielders'   => ['CAM','CM','CDM','LM','LF','LW','RM','RF','RW'],
+    'Defenders'     => ['CB','LB','LWB','RWB','RB'],
+    'Goalkeepers'   => ['GK']
+];
 
+foreach($processList as $listName=>$listItems){ ?>
     <div class="row">
-        <h4>Goalkeepers</h4>
+        <h4>{{ $listName }}</h4>
+<?php
+    foreach($players as $player){
+        if(!in_array($player->misc['position'], $listItems))  continue;
+        $playerFitness = $player->getFitness();
+
+        if($playerFitness > 90)         $classToUse = 'progress-bar-success';
+        elseif($playerFitness > 70)     $classToUse = 'progress-bar-info';
+        elseif($playerFitness > 50)     $classToUse = '';
+        elseif($playerFitness > 30)     $classToUse = 'progress-bar-warning';
+        else                            $classToUse = 'progress-bar-danger';
+        ?>
         <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                <span class="sr-only">86%</span>
+            <div class="progress-bar {{ $classToUse }}" role="progressbar" aria-valuenow="{{ $playerFitness }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $playerFitness }}%;">
+                <span class="sr-only">{{ $playerFitness }}%</span>
             </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">86%</span>
+            <span class="progress-type">{{ $player->misc['name'] }}</span>
+            <span class="progress-completed">{{ $playerFitness }}%</span>
         </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
-                <span class="sr-only">68%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">68%</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%">
-                <span class="sr-only">56%</span>
-            </div>
-            <span class="progress-type">Player Name</span>
-            <span class="progress-completed">56%</span>
-        </div>
+<?php } ?>
     </div>
+<?php
+}
+?>
 </div>
 @stop

@@ -27,4 +27,8 @@ class Player extends Moloquent {
     public function getImageClub(){
         return isset($this->playerCard['club']) ? app_images_club_crest_path(false).'13/'.str_replace(' ','_',mb_strtolower($this->misc['club'])).'/crest.png' : null;
     }
+
+    public function getFitness(){
+        return rand(0,100);
+    }
 }
