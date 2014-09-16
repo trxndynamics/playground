@@ -6280,3 +6280,7 @@ table.tablesorter thead tr th:hover {
 a.chosen-team {
     color: #21ff00;
 }
+
+.progress > .progress-type > img { width:20px;}
+
+table.team-stats img { width:25px;}

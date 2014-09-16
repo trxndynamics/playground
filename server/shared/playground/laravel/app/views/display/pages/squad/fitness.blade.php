@@ -39,7 +39,7 @@ foreach($processList as $listName=>$listItems){ ?>
             <div class="progress-bar {{ $classToUse }}" role="progressbar" aria-valuenow="{{ $playerFitness }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $playerFitness }}%;">
                 <span class="sr-only">{{ $playerFitness }}%</span>
             </div>
-            <span class="progress-type">{{ $player->misc['name'] }}</span>
+            <span class="progress-type"><img src="{{ $player->getImageFace() }}" />{{ $player->misc['name'] }}</span>
             <span class="progress-completed">{{ $playerFitness }}%</span>
         </div>
 <?php } ?>

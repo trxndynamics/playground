@@ -40,7 +40,7 @@ if(Sentry::check()){
     });
 
     Route::group(array('prefix'=>'league'), function(){
-        Route::get('/table', 'LeagueController@table');
+        Route::get('/table/{name}', 'LeagueController@table');
         Route::get('/calendar', 'LeagueController@calendar');
     });
 
@@ -52,7 +52,8 @@ if(Sentry::check()){
     });
 
     Route::group(array('prefix'=>'team'), function(){
-        Route::get('/display', 'TeamController@displayTeam');
+        Route::get('/display/{name}', 'TeamController@displayTeam');
+        Route::get('/stats/{name}', 'TeamController@stats');
     });
 
     Route::group(array('prefix'=>'fixture'), function(){
