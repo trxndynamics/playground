@@ -17,7 +17,6 @@ class TeamController extends BaseController {
             ->orderBy('misc.name')
             ->get();
 
-
         return View::make('display/pages/team/stats')
             ->with('players', $players)
             ->with('team', $team)
@@ -26,5 +25,12 @@ class TeamController extends BaseController {
 
     public function display($id){
         return View::make('display/pages/team/stats');
+    }
+
+    public function notifications(){
+        $user   = Sentry::getUser();
+        $players = Player::where('misc.club','=',$user->club)->get();
+
+        return View::make('display/pages/team/notifications')->with('players',$players);
     }
 }

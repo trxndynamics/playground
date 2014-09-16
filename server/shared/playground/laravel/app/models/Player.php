@@ -31,4 +31,8 @@ class Player extends Moloquent {
     public function getFitness(){
         return rand(0,100);
     }
+
+    public function getForm(){
+        return rand(0,5);
+    }
 }
