@@ -69,7 +69,7 @@
             <div id="tile5" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
+                        <div class="item active" data-url="/media/news">
                             <h3 class="tilecaption"><i class="fa fa-newspaper-o fa-4x"></i> News</h3>
                         </div>
                     </div>
@@ -120,10 +120,10 @@
                         <div class="item" data-url="/team/finances">
                             <h3 class="tilecaption"><i class="fa fa-line-chart fa-4x"></i> Finances</h3>
                         </div>
-                        <div class="item" data-url="/player/stats">
+                        <div class="item active" data-url="/team/stats/{{ $user->club }}">
                             <h3 class="tilecaption"><i class="fa fa-pie-chart fa-4x"></i> Statistics</h3>
                         </div>
-                        <div class="item active" data-url="/league/table">
+                        <div class="item" data-url="/league/table">
                             <h3 class="tilecaption"><i class="fa fa-area-chart fa-4x"></i> League Position</h3>
                         </div>
                     </div>

@@ -2,31 +2,20 @@
 
 class NotificationsController extends BaseController {
 
-    public function players(){
-        $notifications = [
-            [
-                'id'        => 241,
-                'header'    => 'Contract',
-                'text'      => 'I would like a new contract',
-                'name'      => 'Ryan Giggs',
-            ],
-            [
-                'id'        => 27,
-                'header'    => 'Contract',
-                'text'      =>'I would like a new contract',
-                'name'      => 'Ryan Giggs',
-            ],
-            [
-                'id'        => 2,
-                'header'    => 'Contract',
-                'text'      => 'First Team Action',
-                'name'      => 'Ryan Giggs',
-            ],
-        ];
+    public function news(){
+        $user           = Sentry::getUser();
+        $numberOfTeams  = Team::count();
+        $team           = Team::where('name','!=',$user->club)->skip(rand(1,$numberOfTeams-1))->first();
+        $player         = Player::where('misc.club','=',$team->name)->first();
+        $teamTwo        = Team::where('name','!=',$team->name)->skip(rand(1,$numberOfTeams-1))->first();
+        $teamThree      = Team::where('name','!=',$user->club)->skip(rand(1,$numberOfTeams-1))->first();
 
-        return View::make('display/pages/notifications-carousel')
-            ->with('notifications', $notifications
-        );
+        return View::make('display/pages/media/news')
+            ->with('user', Sentry::getUser())
+            ->with('player', $player)
+            ->with('team', $team)
+            ->with('teamTwo',$teamTwo)
+            ->with('teamThree', $teamThree)
+        ;
     }
-
 }

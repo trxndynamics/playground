@@ -64,6 +64,10 @@ if(Sentry::check()){
         Route::get('/create', 'MatchController@create');
     });
 
+    Route::group(array('prefix'=>'media'), function(){
+        Route::get('/news', 'NotificationsController@news');
+    });
+
     App::missing(function($exception){
         return Redirect::to('/start');
     });
