@@ -2,7 +2,12 @@
 
 class LeagueController extends BaseController {
 
-    public function table($name){
+    public function table($name=null){
+        if($name === null){
+            $user = Sentry::getUser();
+            $team = Team::where('name','=',$user->club)->first();
+            $name = $team->league;
+        }
         $league = League::where('name','=',$name)->first();
 
         return View::make('display/pages/league/table')->with('league',$league);
