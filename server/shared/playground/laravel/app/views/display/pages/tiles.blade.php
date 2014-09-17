@@ -145,8 +145,8 @@
             <div id="tile1" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <h3 class="tilecaption"><i class="fa fa-comments fa-4x"></i> Press Reports</h3>
+                        <div class="item active" data-url="/team/notifications">
+                            <h3 class="tilecaption"><i class="fa fa-comments fa-4x"></i> Player Notifications</h3>
                         </div>
                     </div>
                 </div>
