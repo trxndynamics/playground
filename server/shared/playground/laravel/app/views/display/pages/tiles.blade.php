@@ -117,7 +117,7 @@
             <div id="tile8" class="tile">
                 <div class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="item">
+                        <div class="item" data-url="/team/finances">
                             <h3 class="tilecaption"><i class="fa fa-line-chart fa-4x"></i> Finances</h3>
                         </div>
                         <div class="item" data-url="/player/stats">

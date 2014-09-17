@@ -33,4 +33,8 @@ class TeamController extends BaseController {
 
         return View::make('display/pages/team/notifications')->with('players',$players);
     }
+
+    public function finances(){
+        return View::make('display/pages/team/finances');
+    }
 }

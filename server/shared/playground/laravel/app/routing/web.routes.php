@@ -55,6 +55,7 @@ if(Sentry::check()){
         Route::get('/display/{name}', 'TeamController@displayTeam');
         Route::get('/stats/{name}', 'TeamController@stats');
         Route::get('/notifications', 'TeamController@notifications');
+        Route::get('/finances', 'TeamController@finances');
     });
 
     Route::group(array('prefix'=>'fixture'), function(){
