@@ -2,22 +2,20 @@
     <li class="dropdown messages-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li class="dropdown-header">2 New Messages</li>
+            <li class="dropdown-header">New Notifications</li>
             <li class="message-preview">
-                <a href="#">
+                <a href="/team/notifications">
                     <span class="avatar"><i class="fa fa-bell"></i></span>
-                    <span class="message">Security alert</span>
+                    <span class="message">Team Notifications</span>
                 </a>
             </li>
             <li class="divider"></li>
             <li class="message-preview">
-                <a href="#">
+                <a href="/media/news">
                     <span class="avatar"><i class="fa fa-bell"></i></span>
-                    <span class="message">Security alert</span>
+                    <span class="message">News Articles</span>
                 </a>
             </li>
-            <li class="divider"></li>
-            <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
         </ul>
     </li>
     <li class="dropdown user-dropdown">
