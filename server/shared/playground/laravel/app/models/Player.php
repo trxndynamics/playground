@@ -35,4 +35,17 @@ class Player extends Moloquent {
     public function getForm(){
         return rand(0,5);
     }
+
+    public function getValue(){
+        $x = rand(0, 10000000);
+        if ($x > 1000000) {
+            $divisor = 1000000;
+        } elseif ($x > 10000) {
+            $divisor = 10000;
+        } else {
+            $divisor = 1;
+        }
+        $x = $x - ($x % $divisor);
+        return number_format($x);
+    }
 }

@@ -59,6 +59,8 @@ class FixtureGenerate extends Command {
         //count the number of teams
         $numberOfTeams  = count($teams);
         $homeFixtures   = [];
+        $awayFixtures   = [];
+        $teamList       = [];
 
         foreach($teams as $team){
             $teamList[$team->id] = $team->name;
@@ -68,10 +70,13 @@ class FixtureGenerate extends Command {
         $numberOfFixtureWeeksForEachTeam = ($numberOfTeams-1)*2;
 
         for($i=0; $i < $numberOfFixtureWeeksForEachTeam; $i++){
-            $fixtureDate = \Carbon\Carbon::createFromTimestamp($startDateTimestamp);
-            $fixtureDate->addWeeks($i);
+            $lastWeeksHome  = [];
+            $fixtureDate    = \Carbon\Carbon::createFromTimestamp($startDateTimestamp)->addWeeks($i);
+            $thisWeeksTeams = $teamList;
 
 
+
+            exit();
         }
 
         var_dump($numberOfTeams / $numberOfSaturdays);

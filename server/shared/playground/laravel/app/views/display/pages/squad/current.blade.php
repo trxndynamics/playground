@@ -37,7 +37,7 @@
                     <td><img src="{{ $player->getImageNation() }}" width="25" /> {{ $player->misc['nation'] }}</td>
                     <td>{{ $player->misc['age'] }}</td>
                     <td>{{ $player->misc['position'] }}</td>
-                    <td>£VALUE</td>
+                    <td>£{{ $player->getValue() }}</td>
                 </tr>
                 @endforeach
                 </tbody>
