@@ -1,0 +1,73 @@
+db.getCollection("players").insert({
+    "_id": ObjectId("5421cfee10f0ed73128b4568"),
+    "id": "CM_1",
+    "attributes": {
+        "ball control": NumberLong(64),
+        "crossing": NumberLong(55),
+        "curve": NumberLong(44),
+        "dribbling": NumberLong(95),
+        "finishing": NumberLong(5),
+        "free kicks": NumberLong(31),
+        "heading": NumberLong(68),
+        "long passing": NumberLong(49),
+        "long shots": NumberLong(39),
+        "marking": NumberLong(71),
+        "penalties": NumberLong(41),
+        "short passing": NumberLong(62),
+        "shot power": NumberLong(58),
+        "sliding tackle": NumberLong(69),
+        "standing tackle": NumberLong(73),
+        "volleys": NumberLong(21),
+        "acceleration": NumberLong(67),
+        "agility": NumberLong(57),
+        "balance": NumberLong(58),
+        "jumping": NumberLong(55),
+        "reactions": NumberLong(66),
+        "sprint speed": NumberLong(64),
+        "stamina": NumberLong(74),
+        "strength": NumberLong(74),
+        "aggression": NumberLong(72),
+        "positioning": NumberLong(27),
+        "interceptions": NumberLong(69),
+        "vision": NumberLong(51),
+        "total stats": NumberLong(337)
+    },
+    "ratings": {
+        "attacker rating": NumberLong(45),
+        "creator rating": NumberLong(54),
+        "defender rating": NumberLong(73)
+    },
+    "playerCard": {
+        "rating": NumberLong(68),
+        "name": "Jaspers",
+        "position": "CDM",
+        "nation": "7.png",
+        "club": "100409.png",
+        "picture": "137261.png",
+        "attributes": {
+            "pace": NumberLong(78),
+            "shooting": NumberLong(70),
+            "passing": NumberLong(70),
+            "dribbling": NumberLong(70),
+            "defending": NumberLong(15),
+            "heading": NumberLong(75)
+        }
+    },
+    "misc": {
+        "name": "Marc Jaspers",
+        "club": "Mars Maestros",
+        "league": "CM4",
+        "nation": "Belgium",
+        "total stats": "337",
+        "position": "CDM",
+        "age": "29",
+        "height": "188cm | 6'2\"",
+        "foot": "Right",
+        "attack workrate": "Medium",
+        "defensive workrate": "Medium",
+        "weak foot": NumberLong(3),
+        "skill moves": NumberLong(3)
+    },
+    "updated_at": ISODate("2014-09-22T18:20:46.582Z"),
+    "created_at": ISODate("2014-09-22T18:20:46.582Z")
+});
