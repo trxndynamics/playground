@@ -41,7 +41,7 @@
                     <td><a href="/league/table/{{ $player->misc['league'] }}">{{ $player->misc['league'] }}</a></td>
                     <td>{{ $player->misc['age'] }}</td>
                     <td>{{ $player->misc['position'] }}</td>
-                    <td>£VALUE</td>
+                    <td>£{{ $player->getValue() }}</td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -35,6 +35,7 @@
                     <th><input type="text" class="form-control" placeholder="Nationality" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Age" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Position" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Total Stats" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Value" disabled></th>
                 </tr>
                 </thead>
@@ -46,7 +47,8 @@
                     <td><img src="{{ $player->getImageNation() }}" width="25" /> {{ $player->misc['nation'] }}</td>
                     <td>{{ $player->misc['age'] }}</td>
                     <td>{{ $player->misc['position'] }}</td>
-                    <td>£VALUE</td>
+                    <td><?php if(isset($player->attributes['total stats'])) echo $player->attributes['total stats']; ?></td>
+                    <td>£{{ $player->getValue() }}</td>
                 </tr>
                 @endforeach
                 </tbody>

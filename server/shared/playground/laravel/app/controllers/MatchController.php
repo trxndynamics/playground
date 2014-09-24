@@ -114,6 +114,7 @@ class MatchController extends BaseController {
             'misc.nation',
             'misc.position',
             'playerCard',
+            'attributes'
         );
 
         $user       = Sentry::getUser();
