@@ -43,6 +43,7 @@ if(Sentry::check()){
         Route::get('/table', 'LeagueController@table');
         Route::get('/table/{name}', 'LeagueController@table');
         Route::get('/calendar', 'LeagueController@calendar');
+        Route::get('/calendar/{name}', 'LeagueController@calendar');
     });
 
     Route::get('/highlights', 'SocialController@highlights');

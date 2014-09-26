@@ -14,8 +14,11 @@
                 @foreach($matches as $match)
                 <?php
                     $carbonDate     = \Carbon\Carbon::parse($match->date['date']);
-                    $imageFolderRef = ($match->home === $user->club) ? $match->away : $match->home;
-                    $imageFolderRef = str_replace(' ','_',mb_strtolower($imageFolderRef));
+
+                    foreach($match->teams as $team){
+                        if(!isset($imageFolderRef))     $imageFolderRef = str_replace(' ','_',mb_strtolower($team));
+                        else if($team !== $filterTeam)  $imageFolderRef = str_replace(' ','_',mb_strtolower($team));
+                    }
                 ?>
                 <li>
                     <time datetime="{{ $carbonDate->format('Y-m-d') }}">

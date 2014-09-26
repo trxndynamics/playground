@@ -67,16 +67,18 @@ class FixtureGenerate extends Command {
         $leagueName = 'Bundesliga';
         $league     = League::where('name','=',$leagueName)->first();
         $teamList   = Team::where('league','=',$leagueName)->get();
+        $arrTeams   = [];
+
+        foreach($teamList as $teamListItem){
+            $arrTeams[] = $teamListItem->name;
+        }
 
         //get the start date and end date of football league calendar
         $startDate  = \Carbon\Carbon::createFromTimestamp($startDateTimestamp);    //start date
 //        $endDate    = \Carbon\Carbon::createFromTimestamp($endDateTimestamp);        //end date
 
         $games = array();
-        $teams = count($teamList);
-
-        $arr    = ['bolton','man utd', 'leeds', 'wigan'];
-        $teams  = count($arr);
+        $teams = count($arrTeams);
 
         // do the work
         for( $i=1; $i<=$teams; $i++ ) {
@@ -87,24 +89,34 @@ class FixtureGenerate extends Command {
         }
 
 
-        // display
-        $max=0;
-        foreach($games as $row) {
-            foreach($row as $col) {
-                printf('%4d', is_null($col) ? -2 : $col);
-                if( $col > $max ) { $max=$col; }
-            }
-            echo "\n";
-        }
-        printf("%d teams in %d weeks, %.2f weeks per team\n", $teams, $max, $max/$teams);
+        // display grid
+//        $max=0;
+//        foreach($games as $row) {
+//            foreach($row as $col) {
+//                printf('%4d', is_null($col) ? -2 : $col);
+//                if( $col > $max ) { $max=$col; }
+//            }
+//            echo "\n";
+//        }
+//        printf("%d teams in %d weeks, %.2f weeks per team\n", $teams, $max, $max/$teams);
 
         for($i=1; $i<=count($games); $i++){
             for($j=1; $j<=count($games); $j++){
                 if($i==$j) continue;
 
-                $fixtureDate = $this->getWeek($i, $j, $teams);
+                //todo sort the fixture date out so that there is not a massive set of consecutive home / away fixtures
+                $matchWeek = $this->getWeek($i, $j, $teams);
+                $fixtureDate = \Carbon\Carbon::createFromTimestamp($startDateTimestamp)->addWeeks($matchWeek);
 
-                var_dump($arr[$i-1].' - '.$arr[$j-1].' = '.$this->getWeek($i, $j, $teams));
+                $fixture                = new Match();
+                $fixture->home          = $arrTeams[$i-1];
+                $fixture->away          = $arrTeams[$j-1];
+                $fixture->userId        = '53fd0feb10f0ed20048b4567';  //todo ensure this is the specific user
+                $fixture->dateTimestamp = $fixtureDate->timestamp;
+                $fixture->date          = $fixtureDate;
+                $fixture->teams         = [$arrTeams[$i-1], $arrTeams[$j-1]];
+
+                $fixture->save();
             }
         }
     }
