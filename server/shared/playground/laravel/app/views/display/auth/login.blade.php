@@ -32,7 +32,8 @@
                             <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me"> Remember Me
-                                </label>
+                                </label><br />
+                                <a href="/auth/register">Register Here</a>
                             </div>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                         </fieldset>

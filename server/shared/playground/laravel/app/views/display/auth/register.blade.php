@@ -36,6 +36,7 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Password Confirm" name="password_confirm" type="password" value="">
                             </div>
+                            <a href="/auth/login">If you already have an account, login here</a><br /><br />
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Register">
                         </fieldset>
                     </form>
