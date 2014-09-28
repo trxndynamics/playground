@@ -13,14 +13,14 @@ class LeagueController extends BaseController {
         return View::make('display/pages/league/table')->with('league',$league);
     }
 
-    public function calendar($team=null){
+    public function calendar($team=null, $results=false){
         $user = Sentry::getUser();
         $team = ($team === null) ? $team = $user->club : $team;
         $team = Team::where('name','=',$team)->first();
 
         $teamName   = ($team != null) ? $team->name : $user->club;
         $matches    = Match::where('userId','=',$user->id)
-            ->where('dateTimestamp','>',time())
+            ->where('dateTimestamp',($results==false)?'>':'<',time())
             ->where('teams','=',$teamName)
             ->orderBy('dateTimestamp')
             ->get();
@@ -30,5 +30,9 @@ class LeagueController extends BaseController {
             ->with('user',$user)
             ->with('filterTeam',$teamName)
         ;
+    }
+
+    public function results($team=null){
+        return $this->calendar($team, true);
     }
 }

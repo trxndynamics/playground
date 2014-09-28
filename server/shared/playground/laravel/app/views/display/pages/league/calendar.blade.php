@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <h3>League Calendar: <a href="/fixture/create">Create Fixture</a></h3>
+    <h3>League Calendar: <a href="/fixture/create">Create Fixture</a> <a href="/league/results">View Results</a></h3>
     <hr>
     <div class="row">
         <div class=" col-xs-12 col-sm-offset-2 col-sm-8 ">
@@ -32,8 +32,9 @@
                         <h2 class="title">Friendly</h2>
                         <p class="desc">{{ $match->home }} vs {{ $match->away }}</p>
                         <ul>
-                            <li style="width:50%;"><span class="fa fa-male"></span> {{ number_format($match->getAttendance()) }}</li>
-                            <li style="width:50%;"><span class="fa fa-money"></span> £{{ number_format($match->getMatchEarnings()) }}</li>
+                            <li style="width:33%;"><span class="fa fa-table"></span> {{ $match->matchDay }}</li>
+                            <li style="width:34%;"><span class="fa fa-male"></span> {{ number_format($match->getAttendance()) }}</li>
+                            <li style="width:33%;"><span class="fa fa-money"></span> £{{ number_format($match->getMatchEarnings()) }}</li>
                         </ul>
                     </div>
                     <div class="social">

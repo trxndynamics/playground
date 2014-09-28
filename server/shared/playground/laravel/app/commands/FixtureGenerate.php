@@ -115,6 +115,7 @@ class FixtureGenerate extends Command {
                 $fixture->dateTimestamp = $fixtureDate->timestamp;
                 $fixture->date          = $fixtureDate;
                 $fixture->teams         = [$arrTeams[$i-1], $arrTeams[$j-1]];
+                $fixture->matchDay      = $matchWeek;
 
                 $fixture->save();
             }
