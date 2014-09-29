@@ -15,27 +15,56 @@ class Player extends Moloquent {
      */
     protected $hidden = array();
 
-
+    /**
+     * returns the image reference used for the player's facial image
+     *
+     * @return null|string
+     */
     public function getImageFace(){
         return isset($this->playerCard['picture']) ? app_images_faces_path(false).$this->playerCard['picture'] : null;
     }
 
+    /**
+     * returns the image reference used for the player's nationality
+     *
+     * @return null|string
+     */
     public function getImageNation(){
         return isset($this->playerCard['nation']) ? app_images_nation_path(false).$this->playerCard['nation'] : null;
     }
 
+    /**
+     * returns the image reference used for the player's associated club
+     *
+     * @return null|string
+     */
     public function getImageClub(){
         return isset($this->playerCard['club']) ? app_images_club_crest_path(false).'13/'.str_replace(' ','_',mb_strtolower($this->misc['club'])).'/crest.png' : null;
     }
 
+    /**
+     * returns the condition of the player as a percentage
+     *
+     * @return int
+     */
     public function getFitness(){
         return rand(0,100);
     }
 
+    /**
+     * returns the players in-form status
+     *
+     * @return int
+     */
     public function getForm(){
         return rand(0,5);
     }
 
+    /**
+     * returns the players value
+     *
+     * @return string
+     */
     public function getValue(){
         $x = rand(0, 10000000);
         if ($x > 1000000) {
@@ -47,5 +76,32 @@ class Player extends Moloquent {
         }
         $x = $x - ($x % $divisor);
         return number_format($x);
+    }
+
+    /**
+     * returns the number of appearances the player has scored
+     *
+     * @return int
+     */
+    public function getAppearances(){
+        return rand(0,10);
+    }
+
+    /**
+     * returns the number of assists the player has scored
+     *
+     * @return int
+     */
+    public function getAssists(){
+        return rand(0,10);
+    }
+
+    /**
+     * returns the number of goals the player has scored
+     *
+     * @return int
+     */
+    public function getGoals(){
+        return rand(0,10);
     }
 }

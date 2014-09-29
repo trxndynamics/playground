@@ -25,6 +25,7 @@
                 <tr class="filters">
                     <th><input type="text" class="form-control" placeholder="Position" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Player Name" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Appearances" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Goals" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Assists" disabled></th>
                 </tr>
@@ -34,8 +35,9 @@
                 <tr>
                     <td>{{ $player->misc['position'] }}</td>
                     <td><img src="{{ $player->getImageFace() }}" /><a href="/player/stats/{{ $player->id }}">{{ $player->misc['name'] }}</a></td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{ $player->getAppearances() }}</td>
+                    <td>{{ $player->getGoals() }}</td>
+                    <td>{{ $player->getAssists() }}</td>
                 </tr>
                 @endforeach
                 </tbody>
