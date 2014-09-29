@@ -15,10 +15,20 @@ class Match extends Moloquent {
      */
     protected $hidden = array();
 
+    /**
+     * returns the match attendance
+     *
+     * @return int
+     */
     public function getAttendance(){
         return rand(0,70000);
     }
 
+    /**
+     * returns the match earnings
+     *
+     * @return int
+     */
     public function getMatchEarnings(){
         return rand(0,100000);
     }

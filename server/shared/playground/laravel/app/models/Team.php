@@ -15,6 +15,11 @@ class Team extends Moloquent {
      */
     protected $hidden = array();
 
+    /**
+     * returns the current status of the team
+     *
+     * @return mixed
+     */
     public function getStatus(){
         $statuses = array(
             ' post year end financial forecast',
