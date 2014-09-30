@@ -41,62 +41,26 @@ class MatchController extends BaseController {
     }
 
     public function timeline(){
+
         $user               = Sentry::getUser();
         $userSquad          = Player::whereIn('_id',$user->currentSquad)->get();
         $match              = Match::where('userId','=',$user->id)
             ->where('dateTimestamp','>',time())
             ->orderBy('dateTimestamp')
             ->first();
+
         $team               = Team::where('name','=',($match->home == $user->club) ? $match->away : $match->home)->first();
-        $players            = Player::where('misc.club','=',$team->name)->get();
+        $opposition         = Team::where('name','=',($match->home != $user->club) ? $match->away : $match->home)->first();
 
-        $required           = ['GK','LB','CB','CB','RB','LM','CDM','RM','CAM','ST','ST'];
-        $benchRequired      = ['GK', 'LB', 'RB', 'CB', 'CM', 'ST', 'LM'];
-        $aliases            = ['RWB'=>'RB', 'LWB'=>'LB','RW'=>'RM','LW'=>'LM','LF'=>'LM','RF'=>'RM','CF'=>'ST'];
-        $oppositionSquad    = [];
-        $oppositionBench    = [];
-
-        foreach($players as $id=>$player){
-            foreach($required as $k=>$v){
-                if(array_key_exists($player->misc['name'], $oppositionSquad)) continue;
-                $playerPosition = $player->misc['position'];
-                if(array_key_exists($player->misc['position'], $aliases))   $playerPosition = $aliases[$player->misc['position']];
-
-                if($playerPosition === $v){
-                    unset($required[$k]);
-                    $oppositionSquad[$player->misc['name']] = $player;
-                }
-            }
-        }
-
-        if(!empty($required)){
-            foreach($players as $id=>$player){
-                //todo have this use positional typing for CB, MF, ST covering roles instead of just adding next available
-                if(!array_key_exists($player->misc['name'], $oppositionSquad)){
-                    array_shift($required);
-                    $oppositionSquad[$player->misc['name']] = $player;
-
-                    if(empty($required))    break;
-                }
-            }
-        }
-
-        foreach($players as $player){
-            if(!array_key_exists($player->misc['name'], $oppositionSquad) &&
-                (!array_key_exists($player->misc['name'], $oppositionSquad) &&
-                count($oppositionBench) < 7))
-            {
-                $oppositionBench[$player->misc['name']] = $player;
-            }
-        }
+        /** @var $opposition Team */
+        $opposition->generateSquad();
 
         return View::make('display/pages/timeline')
             ->with('players', $userSquad)
             ->with('user', $user)
             ->with('match', $match)
             ->with('team',$team)
-            ->with('oppositionSquad', $oppositionSquad)
-            ->with('oppositionBench', $oppositionBench)
+            ->with('opposition',$opposition)
         ;
     }
 

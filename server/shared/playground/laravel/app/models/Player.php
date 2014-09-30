@@ -2,6 +2,18 @@
 
 class Player extends Moloquent {
     /**
+     * The available player roles
+     *
+     * @var array
+     */
+    protected $playerRoles = [
+        'Goalkeeper'    => ['GK'],
+        'Defender'      => ['LB','LWB','RB','RWB','CB'],
+        'Midfielder'    => ['LM','LF','LW','RM','RF','RW','CDM','CM','CAM'],
+        'Forward'       => ['ST','CF']
+    ];
+
+    /**
      * The database table used by the model.
      *
      * @var string
@@ -103,5 +115,18 @@ class Player extends Moloquent {
      */
     public function getGoals(){
         return rand(0,10);
+    }
+
+    /**
+     * returns the players position (e.g. defence, midfield, attack, goalkeeper)
+     */
+    public function getPosition($general=false){
+        if($general === false)   return $this->playerCard['position'];
+
+        foreach($this->playerRoles as $positionName => $positions){
+            if(in_array($this->playerCard['position'], $positions))   return $positionName;
+        }
+
+        return $this->playerCard['position'];
     }
 }

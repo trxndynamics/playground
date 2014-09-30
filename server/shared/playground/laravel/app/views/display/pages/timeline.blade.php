@@ -6,6 +6,7 @@
 @stop
 
 @section('content')
+
 <div id="page-wrapper">
     <div class="container">
         <div class="row">
@@ -22,8 +23,12 @@
                             </div>
                             <div class="tl-body">
                                 @foreach($players as $player)
-                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+                                <p>{{ $player->getPosition() }} - {{ $player->misc['name'] }} </p>
                                 @endforeach
+
+                                <?php
+                                //todo use similar behaviour to the opposition
+                                ?>
                             </div>
                         </div>
                     </li>
@@ -32,19 +37,25 @@
                         <div class="tl-circ"></div>
                         <div class="timeline-panel">
                             <div class="tl-heading">
-                                <h4>{{ $team->name }} Squad Announced</h4>
+                                <h4>{{ $opposition->name }} Squad Announced</h4>
                                 <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 2:30 pm</small></p>
                             </div>
                             <div class="tl-body">
-                                @foreach($oppositionSquad as $player)
-                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+                                @foreach(['Goalkeeper','Defender','Midfielder','Forward'] as $position)
+                                    @foreach($opposition->filterTeamByPosition('squad',$position) as $player)
+                                    <p>{{ $player->getPosition() }} - {{ $player->misc['name'] }} </p>
+                                    @endforeach
                                 @endforeach
+
                                 <br />
                                 ------<br />
                                 Bench<br />
                                 <br />
-                                @foreach($oppositionBench as $player)
-                                <p>{{ $player->misc['position'] }} - {{ $player->misc['name'] }}</p>
+
+                                @foreach(['Goalkeeper','Defender','Midfielder','Forward'] as $position)
+                                    @foreach($opposition->filterTeamByPosition('bench',$position) as $player)
+                                    <p>{{ $player->getPosition() }} - {{ $player->misc['name'] }} </p>
+                                    @endforeach
                                 @endforeach
                             </div>
                         </div>

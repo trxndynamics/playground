@@ -29,6 +29,7 @@ class LeagueController extends BaseController {
             ->with('matches',$matches)
             ->with('user',$user)
             ->with('filterTeam',$teamName)
+            ->with('results', $results)
         ;
     }
 
