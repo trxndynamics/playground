@@ -18,7 +18,7 @@ class FixtureGenerate extends Command {
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Generates a list of fixtures for a particular league';
 
 
     /**
@@ -48,10 +48,6 @@ class FixtureGenerate extends Command {
     public function __construct()
     {
         parent::__construct();
-    }
-
-    private function getFixture($remainingFixturesForATeam){
-
     }
 
     /**
@@ -115,7 +111,9 @@ class FixtureGenerate extends Command {
                 $fixture->dateTimestamp = $fixtureDate->timestamp;
                 $fixture->date          = $fixtureDate;
                 $fixture->teams         = [$arrTeams[$i-1], $arrTeams[$j-1]];
+                $fixture->league        = $leagueName;
                 $fixture->matchDay      = $matchWeek;
+                $fixture->type          = 'league';
 
                 $fixture->save();
             }

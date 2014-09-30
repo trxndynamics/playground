@@ -16,7 +16,9 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12" >
-                There are no settings to be configured at this time.
+                Available Settings: <br />
+                <br />
+                <a href="/user/settings/fixtures/generate">Generate Fixtures</a>
             </div>
         </div>
     </div>

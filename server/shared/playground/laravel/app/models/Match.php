@@ -32,4 +32,13 @@ class Match extends Moloquent {
     public function getMatchEarnings(){
         return rand(0,100000);
     }
+
+    /**
+     * returns the type of match fixture
+     *
+     * @return string
+     */
+    public function getFixtureType(){
+        return ($this->type == 'league') ? $this->league : 'Friendly';
+    }
 }

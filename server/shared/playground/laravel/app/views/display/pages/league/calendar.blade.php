@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <h3>League Calendar: <a href="/fixture/create">Create Fixture</a> <a href="/league/results">View Results</a></h3>
+    <h3>League Calendar: <a href="/fixture/create">Create Fixture</a> <a href="/league/results">View Results</a> <a href="/league/calendar">View Fixtures</a></h3>
     <hr>
     <div class="row">
         <div class=" col-xs-12 col-sm-offset-2 col-sm-8 ">
@@ -29,7 +29,7 @@
                     </time>
                     <img alt="Club Crest" src="/resource/images/crests/13/{{ $imageFolderRef }}/crest.png" />
                     <div class="info">
-                        <h2 class="title">Friendly</h2>
+                        <h2 class="title">{{ $match->getFixtureType() }}</h2>
                         <p class="desc">{{ $match->home }} vs {{ $match->away }}</p>
                         <ul>
                         @if($results == true)
