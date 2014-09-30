@@ -79,7 +79,7 @@
 .event-list > li > .social > ul > li {
     display: table-cell;
     cursor: pointer;
-    color: rgb(30, 30, 30);
+    color: rgb(150, 150, 150);
     font-size: 11pt;
     font-weight: 300;
     padding: 3px 0px;

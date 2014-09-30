@@ -32,8 +32,8 @@
                         <h2 class="title">Friendly</h2>
                         <p class="desc">{{ $match->home }} vs {{ $match->away }}</p>
                         <ul>
-                            <li style="width:33%;"><span class="fa fa-table"></span> {{ $match->matchDay }}</li>
-                            <li style="width:34%;"><span class="fa fa-male"></span> {{ number_format($match->getAttendance()) }}</li>
+                            <li style="width:33%;"><span class="fa fa-table"></span>  Matchday {{ $match->matchDay }}</li>
+                            <li style="width:34%;"><span class="fa fa-male"></span>  Attendance {{ number_format($match->getAttendance()) }}</li>
                             <li style="width:33%;"><span class="fa fa-money"></span> £{{ number_format($match->getMatchEarnings()) }}</li>
                         </ul>
                     </div>
