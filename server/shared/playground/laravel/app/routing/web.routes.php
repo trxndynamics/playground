@@ -53,7 +53,7 @@ if(Sentry::check()){
     Route::group(array('prefix'=>'user'), function(){
         Route::get('/profile', 'UserController@profile');
         Route::get('/settings', 'UserController@settings');
-        Route::get('/settings/fixtures/generate', 'UserController@fixtureGenerate');
+        Route::get('/settings/fixtures/generate', 'SettingsController@fixtureGenerate');
     });
 
     Route::group(array('prefix'=>'team'), function(){

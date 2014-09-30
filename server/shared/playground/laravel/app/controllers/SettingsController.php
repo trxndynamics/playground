@@ -3,8 +3,8 @@
 class SettingsController extends BaseController {
 
     public function fixtureGenerate(){
-//        $this->call('FixtureGenerate');
-        //todo get the fixture generate script running from here
+        Artisan::call('FixtureGenerate');
+
         return Redirect::to('/user/settings');
     }
 }
