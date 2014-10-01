@@ -20,6 +20,7 @@
                 <?php
                     foreach($players as $index => $player){
                         $playerForm = $player->getForm();
+                        $quote      = $player->getQuote('both');
                     ?>
                         <div class="col-md-4 col-sm-6 <?php if(($index % 3) > 0) echo 'hidden-xs'; ?>">
                             <div class="block-text rel zmin">
@@ -31,13 +32,13 @@
                                         @endfor
                                     </span>
                                 </div>
-                                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                                <p>{{ $quote['long'] }}</p>
                                 <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                             </div>
                             <div class="person-text rel">
                                 <img src="{{ $player->getImageFace() }}"/>
                                 <a title="" href="#">{{ $player->misc['name'] }}</a>
-                                <i>wants a new contract</i>
+                                <i>{{ $quote['short'] }}</i>
                             </div>
                         </div>
 

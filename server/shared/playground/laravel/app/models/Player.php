@@ -129,4 +129,33 @@ class Player extends Moloquent {
 
         return $this->playerCard['position'];
     }
+
+    /**
+     * returns the current carbon instance of the contract expiry
+     *
+     * @return static
+     */
+    public function getContractExpiry(){
+        return \Carbon\Carbon::create()->addYears(3);
+    }
+
+    /**
+     * returns the players current quoted status
+     *
+     * @return string
+     */
+    public function getQuote($status=null){
+        $shortQuote = 'wants a new contract';
+        $longQuote  = 'I would like a new contract as I feel like my contract is nearing its end';
+
+        switch($status){
+            case 'both':
+                return ['short'=>$shortQuote, 'long'=>$longQuote];
+            case 'short':
+                return $shortQuote;
+            case 'long':
+            default:
+                return $longQuote;
+        }
+    }
 }
