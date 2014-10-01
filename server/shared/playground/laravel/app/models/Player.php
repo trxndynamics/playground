@@ -28,6 +28,20 @@ class Player extends Moloquent {
     protected $hidden = array();
 
     /**
+     * returns the flag to determine if the contract is expiring
+     *
+     * @param $contract
+     * @return bool
+     */
+    private function isContractExpiring(){
+        return ($this->getContractExpiry() < \Carbon\Carbon::create()->addMonths(18));
+    }
+
+    private function isHappy(){
+        return ($this->getMorale() > 3);
+    }
+
+    /**
      * returns the image reference used for the player's facial image
      *
      * @return null|string
@@ -136,7 +150,15 @@ class Player extends Moloquent {
      * @return static
      */
     public function getContractExpiry(){
-        return \Carbon\Carbon::create()->addYears(3);
+        return \Carbon\Carbon::create()->addYears(rand(0,5));
+    }
+
+    /**
+     * Gets the players morale status
+     * @return int
+     */
+    public function getMorale(){
+        return rand(0,5);
     }
 
     /**
@@ -145,8 +167,25 @@ class Player extends Moloquent {
      * @return string
      */
     public function getQuote($status=null){
-        $shortQuote = 'wants a new contract';
-        $longQuote  = 'I would like a new contract as I feel like my contract is nearing its end';
+        $shortQuote = 'content with how things are going';
+        $longQuote  = 'I\'m happy to remain in contention for upcoming games and would like to be considered for future matches';
+
+        $isExpiring = $this->isContractExpiring();
+        $isHappy    = $this->isHappy();
+
+        if($isHappy && $isExpiring){
+            $shortQuote = 'wants a new contract';
+            $longQuote  = 'I would like a new contract as I feel like my contract is nearing its end';
+
+        } else if(!$isHappy && $isExpiring){
+            $shortQuote = 'considering other options';
+            $longQuote  = 'I don\'t feel like things are working out and am currently considering other options';
+
+        } else if(!$isHappy && !$isExpiring){
+            $shortQuote = 'struggling to settle';
+            $longQuote  = 'I\'m currently struggling to settle into the team and the area at the moment';
+
+        }
 
         switch($status){
             case 'both':
