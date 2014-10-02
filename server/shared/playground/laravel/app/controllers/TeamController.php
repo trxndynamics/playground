@@ -37,4 +37,8 @@ class TeamController extends BaseController {
     public function finances(){
         return View::make('display/pages/team/finances');
     }
+
+    public function selectKit(){
+        return View::make('display/pages/team/select-kit');
+    }
 }

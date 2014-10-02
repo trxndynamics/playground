@@ -18,7 +18,8 @@
             <div class="col-xs-12" >
                 Available Settings: <br />
                 <br />
-                <a href="/user/settings/fixtures/generate">Generate Fixtures</a>
+                <a href="/user/settings/fixtures/generate">Generate Fixtures</a><br />
+                <a href="/user/settings/fixtures/generate">Change Kit</a>
             </div>
         </div>
     </div>
