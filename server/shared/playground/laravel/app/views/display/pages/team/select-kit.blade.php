@@ -17,7 +17,7 @@
         <h2>Select Kit</h2>
     </div>
 </div>
-<div class="carousel-reviews broun-block">
+<div class="select-kit-display broun-block">
     <div class="container">
         <div class="row">
 

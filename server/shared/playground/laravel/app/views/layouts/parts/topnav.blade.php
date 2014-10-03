@@ -1,4 +1,8 @@
 <ul class="nav navbar-nav navbar-right navbar-user">
+    <li>
+        <img id="away-kit" class="kit-display" src="{{ $user->away_kit }}" />
+        <img id="home-kit" class="kit-display" src="{{ $user->home_kit }}" />
+    </li>
     <li class="dropdown messages-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
         <ul class="dropdown-menu">

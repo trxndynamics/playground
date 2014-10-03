@@ -38,7 +38,19 @@ class TeamController extends BaseController {
         return View::make('display/pages/team/finances');
     }
 
-    public function selectKit(){
-        return View::make('display/pages/team/select-kit');
+    public function selectKit($location=null){
+
+        if($location === null){
+            return View::make('display/pages/team/select-kit');
+        }
+
+        if(Request::isMethod('post')){
+            $user = Sentry::getUser();
+            $user->away_kit = $user->home_kit;
+            $user->home_kit = $_POST['src'];
+            $user->save();
+        }
+
+        return 'true';
     }
 }

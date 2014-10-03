@@ -62,6 +62,7 @@ if(Sentry::check()){
         Route::get('/notifications', 'TeamController@notifications');
         Route::get('/finances', 'TeamController@finances');
         Route::get('/select-kit', 'TeamController@selectKit');
+        Route::post('/select-kit/{location}', 'TeamController@selectKit');
     });
 
     Route::group(array('prefix'=>'fixture'), function(){
