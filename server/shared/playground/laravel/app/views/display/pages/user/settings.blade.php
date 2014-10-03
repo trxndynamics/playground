@@ -19,7 +19,7 @@
                 Available Settings: <br />
                 <br />
                 <a href="/user/settings/fixtures/generate">Generate Fixtures</a><br />
-                <a href="/user/settings/fixtures/generate">Change Kit</a>
+                <a href="/team/select-kit">Change Kit</a>
             </div>
         </div>
     </div>

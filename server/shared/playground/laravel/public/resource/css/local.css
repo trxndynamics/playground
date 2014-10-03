@@ -6284,3 +6284,5 @@ a.chosen-team {
 .progress > .progress-type > img { width:20px;}
 
 table.team-stats img { width:25px;}
+
+table.dataTable td { background-color:black !important;}
