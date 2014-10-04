@@ -50,7 +50,7 @@
                             foreach(glob($teamKitPathSeason.'/*.{jpg,png,gif}', GLOB_BRACE) as $kitPath){
                                 if(is_dir($kitPath))    continue;
                                 ?>
-                                <img width="50" src="<?php echo str_replace('/var/www/playground/laravel/public','',$kitPath); ?>" style="margin-bottom:10px; margin-right:10px; display:block; float:left">
+                                <img class="kit" data-src-ref="<?php echo str_replace('/var/www/playground/laravel/public','',$kitPath); ?>" width="50" src="" style="margin-bottom:10px; margin-right:10px; display:block; float:left">
                     <?php   }
                         }
                     ?>

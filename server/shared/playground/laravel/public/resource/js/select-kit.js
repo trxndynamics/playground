@@ -21,13 +21,22 @@ $(document).ready(function() {
         });
     };
 
+    loadImages = function(){
+        $('#example img.kit').each(function(){
+            $(this).attr('src', $(this).data('src-ref'));
+        });
+    }
+
     $('#example_wrapper').change(function(){
         changeKitBindings();
+        loadImages();
     });
 
     $('.dataTables_paginate').on('click', function(){
         changeKitBindings();
+        loadImages();
     });
 
     changeKitBindings();
+    loadImages();
 } );
