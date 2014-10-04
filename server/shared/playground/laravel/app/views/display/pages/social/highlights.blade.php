@@ -20,9 +20,8 @@
     <div class="row">
         <div class="col-md-10">
             <div class="vid">
-                <iframe style="border:none;" width="560" height="315" src="//www.youtube.com/embed/8OE-2JHcTOw" allowfullscreen=""></iframe>
+                <iframe width="560" height="315" src="//www.youtube.com/embed/videoseries?list=PLaz9sigNulyl3oKliadvtFdTRmNvpF_CL" frameborder="0" allowfullscreen></iframe>
             </div>
-
         </div>
 
     </div>
