@@ -46,8 +46,11 @@ class TeamController extends BaseController {
 
         if(Request::isMethod('post')){
             $user = Sentry::getUser();
-            $user->away_kit = $user->home_kit;
-            $user->home_kit = $_POST['src'];
+
+            if($user->home_kit !== $_POST['src']){
+                $user->away_kit = $user->home_kit;
+                $user->home_kit = $_POST['src'];
+            }
             $user->save();
         }
 
