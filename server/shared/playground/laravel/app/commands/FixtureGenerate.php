@@ -115,7 +115,15 @@ class FixtureGenerate extends Command {
                 $fixture->matchDay      = $matchWeek;
                 $fixture->type          = 'league';
 
-                $fixture->save();
+                $storedMatch = Match::where('league','=','Bundesliga')
+                    ->where('home','=',$fixture->home)
+                    ->where('away','=',$fixture->away)
+                    ->first()
+                ;
+
+                if($storedMatch === null){
+                    $fixture->save();
+                }
             }
         }
     }
