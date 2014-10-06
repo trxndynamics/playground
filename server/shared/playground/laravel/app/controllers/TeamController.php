@@ -48,6 +48,8 @@ class TeamController extends BaseController {
             $user = Sentry::getUser();
 
             if($user->home_kit !== $_POST['src']){
+                $user->goalkeeper_kit = $user->third_kit;
+                $user->third_kit = $user->away_kit;
                 $user->away_kit = $user->home_kit;
                 $user->home_kit = $_POST['src'];
             }

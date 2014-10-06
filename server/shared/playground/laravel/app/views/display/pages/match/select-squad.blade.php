@@ -15,7 +15,18 @@
     <hr>
     <form method="post" action="/match/squad/select">
         <div class="row" id="playerList">
-
+            @for($i=1; $i<=11; $i++)
+            <div class="col-md-1" style="background-color:transparent; height:120px">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <img id="player-face-id-{{$i}}" src="{{ $user->away_kit }}" style="width:70%;" />
+                    </div>
+                    <div class="col-sm-12">
+                        <span id="player-name-id-{{$i}}">Player #{{$i}}</span>
+                    </div>
+                </div>
+            </div>
+            @endfor
         </div>
     </form>
     <hr />
@@ -42,7 +53,7 @@
                 <tbody>
                 @foreach($players as $player)
                 <tr>
-                    <td><a href="#" class="playerSelect" data-name="{{ $player->misc['name'] }}" data-id="{{ $player->id }}" data-position="{{ $player->misc['position'] }}">Select</a></td>
+                    <td><a href="#" class="playerSelect" data-name="{{$player->misc['name']}}" data-image-ref="{{ $player->getImageFace() }}" data-name="{{ $player->misc['name'] }}" data-id="{{ $player->id }}" data-position="{{ $player->misc['position'] }}">Select</a></td>
                     <td><img src="{{ $player->getImageFace() }}" width="25" /> <a href="/player/stats/{{ $player->_id }}">{{ $player->misc['name'] }}</a></td>
                     <td><img src="{{ $player->getImageNation() }}" width="25" /> {{ $player->misc['nation'] }}</td>
                     <td>{{ $player->misc['age'] }}</td>
