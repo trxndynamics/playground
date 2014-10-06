@@ -84,6 +84,9 @@ class MatchController extends BaseController {
         $user       = Sentry::getUser();
         $players    = Player::project($projectedFields)->where('misc.club','=',$user->club)->get();
 
-        return View::make('display/pages/match/select-squad')->with('players', $players);
+        return View::make('display/pages/match/select-squad')
+            ->with('players', $players)
+            ->with('user', $user)
+        ;
     }
 }
