@@ -19,7 +19,7 @@
             <div class="col-md-1" style="background-color:transparent; height:120px">
                 <div class="row">
                     <div class="col-sm-12">
-                        <img id="player-face-id-{{$i}}" src="{{ $user->away_kit }}" style="width:70%;" />
+                        <img id="player-face-id-{{$i}}" src="@if ($i==1) {{ $user->goalkeeper_kit }} @else {{ $user->home_kit }}@endif" style="width:70%;" />
                     </div>
                     <div class="col-sm-12">
                         <span id="player-name-id-{{$i}}">Player #{{$i}}</span>
