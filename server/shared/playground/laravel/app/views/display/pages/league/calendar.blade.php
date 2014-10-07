@@ -19,6 +19,11 @@
                         if(!isset($imageFolderRef))     $imageFolderRef = str_replace(' ','_',mb_strtolower($team));
                         else if($team !== $filterTeam)  $imageFolderRef = str_replace(' ','_',mb_strtolower($team));
                     }
+
+                    $matchDesc = ($results == true)
+                        ? $match->home.' '.$match->getGoals('home').' vs '.$match->getGoals('away').' '.$match->away
+                        : $match->home.' vs '.$match->away
+                    ;
                 ?>
                 <li>
                     <time datetime="{{ $carbonDate->format('Y-m-d') }}">
@@ -30,7 +35,7 @@
                     <img alt="Club Crest" src="/resource/images/crests/13/{{ $imageFolderRef }}/crest.png" />
                     <div class="info">
                         <h2 class="title">{{ $match->getFixtureType() }}</h2>
-                        <p class="desc">{{ $match->home }} vs {{ $match->away }}</p>
+                        <p class="desc">{{  $matchDesc }}</p>
                         <ul>
                         @if($results == true)
                             <li style="width:33%;"><span class="fa fa-male"></span>  Attendance {{ number_format($match->getAttendance()) }}</li>

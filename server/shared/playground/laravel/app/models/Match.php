@@ -41,4 +41,12 @@ class Match extends Moloquent {
     public function getFixtureType(){
         return ($this->type == 'league') ? $this->league : 'Friendly';
     }
+
+    public function getResult(){
+        return $this->getGoals('home').'-'.$this->getGoals('away');
+    }
+
+    public function getGoals($homeOrAway='home'){
+        return rand(0,5);
+    }
 }
