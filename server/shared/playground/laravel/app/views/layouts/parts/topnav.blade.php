@@ -10,10 +10,8 @@ else if($team !== $filterTeam)  $imageFolderRef = str_replace(' ','_',mb_strtolo
 <ul class="nav navbar-nav navbar-right navbar-user">
     <li>
         <img id="crest" class="crest-display" src="/resource/images/crests/13/{{ $imageFolderRef }}/crest.png" />
-        <img id="goalkeeper-kit" class="kit-display" src="{{ $user->goalkeeper_kit }}" />
-        <img id="away-kit" class="kit-display" src="{{ $user->away_kit }}" />
         <img id="home-kit" class="kit-display" src="{{ $user->home_kit }}" />
-        <img id="third-kit" class="kit-display" src="{{ $user->third_kit }}" />
+        <img id="away-kit" class="kit-display" src="{{ $user->away_kit }}" />
     </li>
     <li class="dropdown messages-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
