@@ -37,24 +37,27 @@ class Team extends Moloquent {
     protected $aliases        = ['RWB'=>'RB', 'LWB'=>'LB','RW'=>'RM','LW'=>'LM','LF'=>'LM','RF'=>'RM','CF'=>'ST'];
 
     /**
-     * Generate an opposition squad
+     * Generate a squad
      *
      * @return array
      */
     public function generateSquad(){
-        $oppositionSquad    = [];
-        $oppositionBench    = [];
-        $players            = Player::where('misc.club','=',$this->name)->get();
+        $squad      = [];
+        $bench      = [];
+        $players    = Player::where('misc.club','=',$this->name)->get();
+        $squadIds   = [];
+        $benchIds   = [];
 
         foreach($players as $id=>$player){
             foreach($this->required as $k=>$v){
-                if(array_key_exists($player->misc['name'], $oppositionSquad)) continue;
+                if(array_key_exists($player->misc['name'], $squad)) continue;
                 $playerPosition = $player->misc['position'];
                 if(array_key_exists($player->misc['position'], $this->aliases))   $playerPosition = $this->aliases[$player->misc['position']];
 
                 if($playerPosition === $v){
                     unset($this->required[$k]);
-                    $oppositionSquad[$player->misc['name']] = $player;
+                    $squadIds[] = $player->id;
+                    $squad[$player->misc['name']] = $player;
                 }
             }
         }
@@ -62,9 +65,10 @@ class Team extends Moloquent {
         if(!empty($required)){
             foreach($players as $id=>$player){
                 //todo have this use positional typing for CB, MF, ST covering roles instead of just adding next available
-                if(!array_key_exists($player->misc['name'], $oppositionSquad)){
+                if(!array_key_exists($player->misc['name'], $squad)){
                     array_shift($required);
-                    $oppositionSquad[$player->misc['name']] = $player;
+                    $squad[$player->misc['name']] = $player;
+                    $squadIds[] = $player->id;
 
                     if(empty($required))    break;
                 }
@@ -72,20 +76,28 @@ class Team extends Moloquent {
         }
 
         foreach($players as $player){
-            if(!array_key_exists($player->misc['name'], $oppositionSquad) &&
-                (!array_key_exists($player->misc['name'], $oppositionSquad) &&
-                    count($oppositionBench) < 7))
+            if(!array_key_exists($player->misc['name'], $squad) &&
+                (!array_key_exists($player->misc['name'], $squad) &&
+                    count($bench) < 7))
             {
-                $oppositionBench[$player->misc['name']] = $player;
+                $benchIds[] = $player->id;
+                $bench[$player->misc['name']] = $player;
             }
         }
 
-        $this->squad = $oppositionSquad;
-        $this->bench = $oppositionBench;
+        $this->teamSelection = [
+            'squad' => $squadIds,
+            'bench' => $benchIds
+        ];
+
+        $this->save();
+
+        $this->squad = $squad;
+        $this->bench = $bench;
 
         return [
-            'squad' => $oppositionSquad,
-            'bench' => $oppositionBench
+            'squad' => $squad,
+            'bench' => $bench
         ];
     }
 

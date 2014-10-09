@@ -14,7 +14,7 @@ class TeamController extends BaseController {
         $team       = Team::where('name','=',$name)->first();
         $players    = Player::project($projectedFields)
             ->where('misc.club','=',$team->name)
-            ->orderBy('misc.name')
+            ->orderBy('misc.position')
             ->get();
 
         return View::make('display/pages/team/stats')

@@ -42,11 +42,24 @@ class Match extends Moloquent {
         return ($this->type == 'league') ? $this->league : 'Friendly';
     }
 
+    public function generateResult(){
+        //todo add in comparison between teams and players
+        $this->homeGoals = rand(0,5);
+        $this->awayGoals = rand(0,5);
+
+        $this->save();
+    }
+
     public function getResult(){
         return $this->getGoals('home').'-'.$this->getGoals('away');
     }
 
     public function getGoals($homeOrAway='home'){
-        return rand(0,5);
+        //todo add in comparison for players
+        if($homeOrAway === 'home'){
+            return (isset($this->homeGoals)) ? $this->homeGoals : rand(0,5);
+        } else {
+            return (isset($this->awayGoals)) ? $this->awayGoals : rand(0,5);
+        }
     }
 }

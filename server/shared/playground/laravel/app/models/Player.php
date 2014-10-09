@@ -197,4 +197,22 @@ class Player extends Moloquent {
                 return $longQuote;
         }
     }
+
+    public function getTotalStats(){
+        if(!isset($this->attributes['total stats']))    return 0;
+
+        return $this->attributes['total stats'];
+    }
+
+    /**
+     * Compete with Player
+     *
+     * @param $player Player
+     * @return bool
+     */
+    public function competeWithPlayer($player, $position, $flags){
+        //todo use position and addition flags (such as condition, home team, etc. to decide whether the competition is won or lost)
+        if($this->getTotalStats() > $player->getTotalStats())   return true;
+        else                                                    return false;
+    }
 }
