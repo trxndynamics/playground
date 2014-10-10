@@ -59,8 +59,27 @@ class Match extends Moloquent {
         $this->save();
     }
 
-    public function getResult(){
-        return $this->getGoals('home').'-'.$this->getGoals('away');
+    public function getResult($displayType='overview', $verbose=true){
+        if($displayType == $this->home)         $displayType = 'home';
+        else if($displayType == $this->away)    $displayType = 'away';
+
+        //todo tidy this up, home goals and away goals should be easily swappable inside this case statement, seems unnecessarily duplicated here
+        switch($displayType){
+            case 'home':
+                if($this->homeGoals === $this->awayGoals)       return ($verbose) ? 'Draw' : 'D';
+                else if($this->homeGoals < $this->awayGoals)    return ($verbose) ? 'Loss' : 'L';
+                else if($this->homeGoals > $this->awayGoals)    return ($verbose) ? 'Win' : 'W';
+                break;
+            case 'away':
+                if($this->awayGoals === $this->homeGoals)       return ($verbose) ? 'Draw' : 'D';
+                else if($this->awayGoals < $this->homeGoals)    return ($verbose) ? 'Loss' : 'L';
+                if($this->awayGoals > $this->homeGoals)         return ($verbose) ? 'Win' : 'W';
+                break;
+            case 'overview':
+            default:
+                return $this->getGoals('home').'-'.$this->getGoals('away');
+        }
+
     }
 
     public function getGoals($homeOrAway='home'){

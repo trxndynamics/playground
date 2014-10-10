@@ -109,4 +109,26 @@ class Team extends Moloquent {
             return ($item->getPosition(true) == $teamPosition);
         });
     }
+
+    public function getForm($quantity=5){
+        if(!is_int($quantity))  $quantity = 5;
+
+        $matches = Match::where('dateTimestamp','<',time())
+            ->whereIn('teams',[$this->name])
+            ->orderBy('dateTimestamp', 'desc')
+            ->take($quantity)
+            ->get();
+
+        $form = [];
+
+        /**
+         * @var $match Match
+         */
+        foreach($matches as $match){
+            $form[] = $match->getResult($this->name, false);
+        }
+
+        //as the search is done in reverse order (descending from current date, we need to reverse the order returned)
+        return array_reverse($form);
+    }
 }
