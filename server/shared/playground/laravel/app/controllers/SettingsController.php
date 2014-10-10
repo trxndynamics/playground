@@ -11,6 +11,7 @@ class SettingsController extends BaseController {
     public function resultsGenerate(){
         $matches = Match::where('dateTimestamp','<',time())->get();
 
+        /** @var $match Match */
         foreach($matches as $match){
             $match->generateResult();
         }

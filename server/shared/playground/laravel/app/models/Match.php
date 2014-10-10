@@ -21,7 +21,7 @@ class Match extends Moloquent {
      * @return int
      */
     public function getAttendance(){
-        return rand(0,70000);
+        return isset($this->attendance) ? $this->attendance : rand(0,70000);
     }
 
     /**
@@ -29,8 +29,14 @@ class Match extends Moloquent {
      *
      * @return int
      */
-    public function getMatchEarnings(){
-        return rand(0,100000);
+    public function getMatchEarnings($homeOrAway='home'){
+        if($homeOrAway === 'home'){
+            return isset($this->homeEarnings) ? $this->homeEarnings : rand(0,100000);
+        } else if($homeOrAway === 'neutral') {
+            return isset($this->homeEarnings) ? $this->homeEarnings : rand(0, 50000);
+        } else {
+            return isset($this->awayEarnings) ? $this->awayEarnings : rand(0,25000);
+        }
     }
 
     /**
@@ -44,8 +50,11 @@ class Match extends Moloquent {
 
     public function generateResult(){
         //todo add in comparison between teams and players
-        $this->homeGoals = rand(0,5);
-        $this->awayGoals = rand(0,5);
+        $this->homeGoals    = $this->getGoals('home');
+        $this->awayGoals    = $this->getGoals('away');
+        $this->homeEarnings = $this->getMatchEarnings('home');
+        $this->awayEarnings = $this->getMatchEarnings('away');
+        $this->attendance   = $this->getAttendance();
 
         $this->save();
     }
