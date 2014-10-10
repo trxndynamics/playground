@@ -7,4 +7,14 @@ class SettingsController extends BaseController {
 
         return Redirect::to('/user/settings');
     }
+
+    public function resultsGenerate(){
+        $matches = Match::where('dateTimestamp','<',time())->get();
+
+        foreach($matches as $match){
+            $match->generateResult();
+        }
+
+        return Redirect::to('/user/settings');
+    }
 }
