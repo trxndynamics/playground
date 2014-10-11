@@ -25,6 +25,7 @@
                 <tr class="filters">
                     <th><input type="text" class="form-control" placeholder="Position" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Club Name" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Games Played" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Games Won" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Games Drawn" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Games Lost" disabled></th>
@@ -34,17 +35,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($league->teams as $id=>$teamName)
+                <?php $i=1; ?>
+                @foreach($tableData as $teamName => $tableDataItem)
                 <tr>
-                    <td>{{ $id+1 }}</td>
+                    <td>{{ $i }}</td>
                     <td><a href="/team/stats/{{ $teamName }}">{{ $teamName }}</a></td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
+                    <td>{{ $tableDataItem['played'] }}</td>
+                    <td>{{ $tableDataItem['won'] }}</td>
+                    <td>{{ $tableDataItem['draw'] }}</td>
+                    <td>{{ $tableDataItem['lost'] }}</td>
+                    <td>{{ $tableDataItem['for'] }}</td>
+                    <td>{{ $tableDataItem['against'] }}</td>
+                    <td>{{ $tableDataItem['points'] }}</td>
                 </tr>
+                <?php $i++; ?>
                 @endforeach
                 </tbody>
             </table>

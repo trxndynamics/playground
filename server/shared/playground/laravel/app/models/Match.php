@@ -82,7 +82,16 @@ class Match extends Moloquent {
 
     }
 
-    public function getGoals($homeOrAway='home'){
+    public function getGoals($homeOrAway='home', $returnGoalsAgainst=false){
+        if($homeOrAway === $this->home)         $homeOrAway = 'home';
+        else if($homeOrAway === $this->away)    $homeOrAway = 'away';
+
+        //invert based on opposition goals
+        if($returnGoalsAgainst === true){
+            if($homeOrAway = 'home')        $homeOrAway = 'away';
+            else if($homeOrAway = 'away')   $homeOrAway = 'home';
+        }
+
         //todo add in comparison for players
         if($homeOrAway === 'home'){
             return (isset($this->homeGoals)) ? $this->homeGoals : rand(0,5);
