@@ -99,4 +99,13 @@ class Match extends Moloquent {
             return (isset($this->awayGoals)) ? $this->awayGoals : rand(0,5);
         }
     }
+
+    public function getTeam($homeOrAway='home'){
+        if($homeOrAway === 'away')  $teamName = $this->away;
+        else                        $teamName = $this->home;
+
+        $team = Team::where('name','=',$teamName)->first();
+
+        return $team;
+    }
 }

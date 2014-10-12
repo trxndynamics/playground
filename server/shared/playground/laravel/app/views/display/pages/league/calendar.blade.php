@@ -24,6 +24,10 @@
                         ? $match->home.' '.$match->getGoals('home').' vs '.$match->getGoals('away').' '.$match->away
                         : $match->home.' vs '.$match->away
                     ;
+
+                    $homeTeam = $match->getTeam('home');
+                    $awayTeam = $match->getTeam('away');
+
                 ?>
                 <li>
                     <time datetime="{{ $carbonDate->format('Y-m-d') }}">
@@ -42,7 +46,9 @@
                             <li style="width:34%;"><span class="fa fa-table"></span>  Matchday {{ $match->matchDay }}</li>
                             <li style="width:33%;"><span class="fa fa-money"></span> £{{ number_format($match->getMatchEarnings()) }}</li>
                         @else
-                            <li style="width:100%;"><span class="fa fa-table"></span>  Matchday {{ $match->matchDay }}</li>
+                            <li style="width:33%;"><span class="fa fa-calendar"></span>  {{ implode('', $homeTeam->getForm()) }}</li>
+                            <li style="width:34%;"><span class="fa fa-table"></span>  Matchday {{ $match->matchDay }}</li>
+                            <li style="width:33%;"><span class="fa fa-calendar"></span>  {{ implode('', $awayTeam->getForm()) }}</li>
                         @endif
                         </ul>
                     </div>
