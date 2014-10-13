@@ -27,6 +27,7 @@
                     <th><input type="text" class="form-control" placeholder="Nationality" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Age" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Position" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Form" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Value" disabled></th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                     <td><img src="{{ $player->getImageNation() }}" width="25" /> {{ $player->misc['nation'] }}</td>
                     <td>{{ $player->misc['age'] }}</td>
                     <td>{{ $player->misc['position'] }}</td>
+                    <td>{{ $player->getForm(true) }}</td>
                     <td>£{{ $player->getValue() }}</td>
                 </tr>
                 @endforeach

@@ -82,8 +82,19 @@ class Player extends Moloquent {
      *
      * @return int
      */
-    public function getForm(){
-        return rand(0,5);
+    public function getForm($verbose=false){
+        $playerFormValues = [
+            0 => 'N/A',
+            1 => 'Very Poor',
+            2 => 'Poor',
+            3 => 'Average',
+            4 => 'Good',
+            5 => 'Excellent'
+        ];
+
+        $playerForm = (isset($this->form)) ? $this->form : rand(0,5);
+
+        return ($verbose === true) ? $playerFormValues[$playerForm] : $playerForm;
     }
 
     /**
