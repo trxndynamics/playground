@@ -9,6 +9,7 @@ class SquadController extends BaseController {
             'misc.nation',
             'misc.position',
             'playerCard',
+            'fitness'
         );
 
         $user       = Sentry::getUser();

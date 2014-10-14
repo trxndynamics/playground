@@ -24,7 +24,6 @@ class SettingsController extends BaseController {
 
         foreach($players as $player){
             $player->fitness = (isset($player->fitness)) ? $player->fitness : rand(95,100);     //set the base fitness levels if they dont already exist
-
             $player->save();
         }
 
