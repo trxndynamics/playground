@@ -74,7 +74,7 @@ class Player extends Moloquent {
      * @return int
      */
     public function getFitness(){
-        return rand(0,100);
+        return (isset($this->fitness)) ? $this->fitness : rand(0,100);
     }
 
     /**

@@ -18,4 +18,16 @@ class SettingsController extends BaseController {
 
         return Redirect::to('/user/settings');
     }
+
+    public function playerFix(){
+        $players = Player::all();
+
+        foreach($players as $player){
+            $player->fitness = (isset($player->fitness)) ? $player->fitness : rand(95,100);     //set the base fitness levels if they dont already exist
+
+            $player->save();
+        }
+
+        return Redirect::to('/user/settings');
+    }
 }
