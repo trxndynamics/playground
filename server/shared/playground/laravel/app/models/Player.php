@@ -33,12 +33,26 @@ class Player extends Moloquent {
      * @param $contract
      * @return bool
      */
-    private function isContractExpiring(){
-        return ($this->getContractExpiry() < \Carbon\Carbon::create()->addMonths(18));
+    public function isContractExpiring(){
+        return ($this->getContractExpiry() < \Carbon\Carbon::createFromTimestamp($this->contactExpiry)->addMonths(18));
     }
 
-    private function isHappy(){
+    /**
+     * returns the players happiness status
+     *
+     * @return bool
+     */
+    public function isHappy(){
         return ($this->getMorale() > 3);
+    }
+
+    /**
+     * returns the flag to say whether or not the contract has expired
+     *
+     * @return bool
+     */
+    public function hasContractExpired(){
+        return (\Carbon\Carbon::create() > \Carbon\Carbon::createFromTimestamp($this->contactExpiry));
     }
 
     /**
