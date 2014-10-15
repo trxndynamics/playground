@@ -161,7 +161,7 @@ class Player extends Moloquent {
      * @return static
      */
     public function getContractExpiry(){
-        return \Carbon\Carbon::create()->addYears(rand(0,5));
+        return (isset($this->contractExpiry)) ? \Carbon\Carbon::createFromTimestamp($this->contractExpiry) : \Carbon\Carbon::create()->addYears(rand(0,5));
     }
 
     /**
@@ -169,7 +169,7 @@ class Player extends Moloquent {
      * @return int
      */
     public function getMorale(){
-        return rand(0,5);
+        return (isset($this->morale)) ? $this->morale : rand(0,5);
     }
 
     /**

@@ -23,7 +23,13 @@ class SettingsController extends BaseController {
         $players = Player::all();
 
         foreach($players as $player){
-            $player->fitness = (isset($player->fitness)) ? $player->fitness : rand(95,100);     //set the base fitness levels if they dont already exist
+            if(!isset($this->contractExpiry)){
+                $expiryDate = \Carbon\Carbon::create()->addYears(rand(2,5));
+                $player->contractExpiry = $expiryDate->timestamp;                                       //set the players contact expiry date
+            }
+
+            $player->morale         = (isset($player->morale)) ? $player->morale : rand(0,5);           //set the base morale level
+            $player->fitness        = (isset($player->fitness)) ? $player->fitness : rand(95,100);      //set the base fitness levels if they dont already exist
             $player->save();
         }
 
