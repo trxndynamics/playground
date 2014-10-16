@@ -224,20 +224,81 @@ class Player extends Moloquent {
     }
 
     public function getTotalStats(){
-        if(!isset($this->attributes['total stats']))    return 0;
-
-        return $this->attributes['total stats'];
+        return $this->getPlayerAttribute('total stats');
     }
 
     /**
      * Compete with Player
      *
-     * @param $player Player
+     * todo tidy this area up to have the same calculations being run regardless of player, e.g. no opposing player references
+     *
+     * @param $opposingPlayer Player
      * @return bool
      */
-    public function competeWithPlayer($player, $position, $flags){
-        //todo use position and addition flags (such as condition, home team, etc. to decide whether the competition is won or lost)
-        if($this->getTotalStats() > $player->getTotalStats())   return true;
-        else                                                    return false;
+    public function competeWithPlayer($opposingPlayer, $position, $flags){
+        $playerStats    = $this->getSpecificStats($position);
+        $opposingStats  = $opposingPlayer->getSpecificStats($position);
+
+        if(empty($playerStats) || empty($opposingStats)){
+            return ($this->getTotalStats() > $opposingPlayer->getTotalStats());
+        }
+
+        //todo handle composure for neutral fixtures
+
+        //add in boost effects for player being at home
+        if(isset($flags['home'])){
+            if($this->misc['club'] == $flags['home'])               $playerStats[]      = 25;
+            if($opposingPlayer->misc['club'] == $flags['home'])     $opposingStats[]    = 25;
+        }
+
+        //add in negative effects for player being out of position
+        if(($this->getPosition(true) != $position) && ($this->getPosition() != $position)) {
+            $playerStats[] = -50;
+        }
+
+        //add in negative effects for opposing player being out of position
+        if(($opposingPlayer->getPosition(true) != $position) && ($opposingPlayer->getPosition() != $position)){
+            $opposingStats[] = -50;
+        }
+
+        //return direct comparison based around position
+        return (array_sum($playerStats) > array_sum($opposingStats)) ? true : false;
+    }
+
+    /**
+     * returns the player attribute
+     *
+     * @param $attributeName
+     * @return mixed|null
+     */
+    public function getPlayerAttribute($attributeName){
+        return (isset($this->attributes['attributes'][$attributeName])) ? $this->attributes['attributes'][$attributeName] : null;
+    }
+
+    public function getSpecificStats($position){
+        $position       = strtolower($position);
+        $statsToFetch   = [];
+        $stats          = [];
+
+        switch($position){
+            case 'defender':
+                $statsToFetch = [
+                    'ball control',
+                    'sliding tackle',
+                    'standing tackle',
+                    'jumping',
+                    'sprint speed',
+                    'strength',
+                    'aggression',
+                    'interceptions'
+                ];
+                break;
+        }
+
+        foreach($statsToFetch as $fetchItem){
+            $stats[$fetchItem] = $this->getPlayerAttribute($fetchItem);
+        }
+
+        return $stats;
     }
 }

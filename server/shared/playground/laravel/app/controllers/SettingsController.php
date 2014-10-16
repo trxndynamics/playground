@@ -35,4 +35,18 @@ class SettingsController extends BaseController {
 
         return Redirect::to('/user/settings');
     }
+
+    public function reviewPlayerCompete(){
+        $players = Player::take(5)->get();
+
+        /** @var Player $playerA */
+        $playerA = $players->first();
+
+        /** @var Player $playerB */
+        $playerB = $players->last();
+
+        $competeResult = $playerA->competeWithPlayer($playerB, 'Defender', array('home'=>'Real Madrid'));
+
+        return $playerA->misc['name'] . (($competeResult == true) ? ' beat ' : ' lost to ') . $playerB->misc['name'];
+    }
 }
