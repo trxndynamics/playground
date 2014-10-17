@@ -262,6 +262,12 @@ class Player extends Moloquent {
 
         //todo add in calculation for player popularity with fans
 
+        //make amendments for player fitness
+        $playerStats[] = $this->getFitness();
+
+        //add in the current form
+        $playerStats[] = $this->getForm() * 25;
+
         return $playerStats;
     }
 
