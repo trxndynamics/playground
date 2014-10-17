@@ -236,33 +236,33 @@ class Player extends Moloquent {
      * @return bool
      */
     public function competeWithPlayer($opposingPlayer, $position, $flags){
-        $playerStats    = $this->getSpecificStats($position);
-        $opposingStats  = $opposingPlayer->getSpecificStats($position);
+        return (
+            array_sum($this->getCompeteStats($position, $flags)) >
+            array_sum($opposingPlayer->getCompeteStats($position, $flags))
+        ) ? true : false;
+    }
 
-        if(empty($playerStats) || empty($opposingStats)){
-            return ($this->getTotalStats() > $opposingPlayer->getTotalStats());
-        }
+    /**
+     * @param $player Player
+     * @param $position
+     * @param $flags
+     * @return array
+     */
+    private function getCompeteStats($position, $flags){
+        //get the players stats
+        $playerStats = $this->getSpecificStats($position);
 
-        //todo handle composure for neutral fixtures
+        if(empty($playerStats)) return 0;
 
-        //add in boost effects for player being at home
-        if(isset($flags['home'])){
-            if($this->misc['club'] == $flags['home'])               $playerStats[]      = 25;
-            if($opposingPlayer->misc['club'] == $flags['home'])     $opposingStats[]    = 25;
-        }
+        //add in negative effects for being out of position
+        if(($this->getPosition(true) != $position) && ($this->getPosition() != $position))    $playerStats[] = -50;
 
-        //add in negative effects for player being out of position
-        if(($this->getPosition(true) != $position) && ($this->getPosition() != $position)) {
-            $playerStats[] = -50;
-        }
+        //add boosted effects for playing at home
+        if(isset($flags['home']) && ($this->misc['club'] == $flags['home']))  $playerStats[] = 25;
 
-        //add in negative effects for opposing player being out of position
-        if(($opposingPlayer->getPosition(true) != $position) && ($opposingPlayer->getPosition() != $position)){
-            $opposingStats[] = -50;
-        }
+        //todo add in calculation for player popularity with fans
 
-        //return direct comparison based around position
-        return (array_sum($playerStats) > array_sum($opposingStats)) ? true : false;
+        return $playerStats;
     }
 
     /**
