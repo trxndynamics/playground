@@ -268,6 +268,12 @@ class Player extends Moloquent {
         //add in the current form
         $playerStats[] = $this->getForm() * 25;
 
+        //add in the players morale
+        $playerStats[] = $this->getMorale() * 15;
+
+        //add in the player fighting for a new contract
+        if($this->isHappy() && $this->isContractExpiring())     $playerStats[] = 35;
+
         return $playerStats;
     }
 
