@@ -28,6 +28,7 @@
                     <th><input type="text" class="form-control" placeholder="Appearances" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Goals" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Assists" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="MOTM" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@
                     <td>{{ $player->getAppearances() }}</td>
                     <td>{{ $player->getGoals() }}</td>
                     <td>{{ $player->getAssists() }}</td>
+                    <td>{{ $player->getMOTMs() }}</td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -156,6 +156,11 @@ class Player extends Moloquent {
         return rand(0,10);
     }
 
+    /** returns the number of man of the match appearances the player has received */
+    public function getMOTMs(){
+        return rand(0,5);
+    }
+
     /**
      * returns the players position (e.g. defence, midfield, attack, goalkeeper)
      */
