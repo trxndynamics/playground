@@ -13,12 +13,33 @@
     </div>
     <div class="row">
         <h4>Main Stats</h4>
-        <div class="col-lg-12">Position: {{ $player->getPosition() }}</div>
-        <div class="col-lg-12">Appearances: {{ $player->getAppearances() }}</div>
-        <div class="col-lg-12">Goals: {{ $player->getGoals() }}</div>
-        <div class="col-lg-12">Assists: {{ $player->getAssists() }}</div>
-        <div class="col-lg-12">Man Of The Match: {{ $player->getMOTMs() }}</div>
-        <br /><br />
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="col-lg-12">Position: {{ $player->getPosition() }}</div>
+                    <div class="col-lg-12">Appearances: {{ $player->getAppearances() }}</div>
+                    <div class="col-lg-12">Goals: {{ $player->getGoals() }}</div>
+                    <div class="col-lg-12">Assists: {{ $player->getAssists() }}</div>
+                    <div class="col-lg-12">Man Of The Match: {{ $player->getMOTMs() }}</div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="col-lg-12">Morale: {{ $player->getMorale(true) }}</div>
+                    <div class="col-lg-12">Contract Expiry: {{ $player->getContractExpiry()->format('jS F Y') }}</div>
+                    <div class="col-lg-12">Form: {{ $player->getForm(true) }}</div>
+                    <div class="col-lg-12">Value: &pound;{{ $player->getValue() }}</div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">Current Status: {{ $player->getQuote() }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
         <h4>Attributes</h4>
         <?php
         foreach($player->attributes as $fieldName => $fieldValue){

@@ -187,8 +187,19 @@ class Player extends Moloquent {
      * Gets the players morale status
      * @return int
      */
-    public function getMorale(){
-        return (isset($this->morale)) ? $this->morale : rand(0,5);
+    public function getMorale($verbose=false){
+        $moraleStates = [
+            0 => 'Depressed',
+            1 => 'Unhappy',
+            2 => 'Content',
+            3 => 'Happy',
+            4 => 'Excited',
+            5 => 'Ecstatic'
+        ];
+
+        $morale = (isset($this->morale)) ? $this->morale : rand(0,5);
+
+        return ($verbose == true) ? $moraleStates[$this->morale] : $morale;
     }
 
     /**
