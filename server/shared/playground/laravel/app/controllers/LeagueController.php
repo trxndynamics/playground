@@ -78,7 +78,7 @@ class LeagueController extends BaseController {
         $matches    = Match::where('userId','=',$user->id)
             ->where('dateTimestamp',($results==false)?'>':'<',time())
             ->where('teams','=',$teamName)
-            ->orderBy('dateTimestamp')
+            ->orderBy('dateTimestamp', ($results==false)?'asc':'desc')
             ->get();
 
         return View::make('display/pages/league/calendar')

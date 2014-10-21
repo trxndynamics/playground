@@ -22,7 +22,7 @@
                 <img src="http://placehold.it/760x400/cccccc/ffffff">
                 <div class="carousel-caption">
                     <h4><a href="#">Rolando set to sign for {{ $user->club }}</a></h4>
-                    <p>Rolando is looking to sign a contract with {{ $user->club }} after having a successful trial.  Provided both parties can agree on wages and the right financial agreement then Rolando should be set to transfer to {{ $user->club }} within the next few days.<a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a></p>
+                    <p>Rolando is looking to sign a contract with {{ $user->club }} after having a successful trial.  Provided both parties can agree on wages and the right financial agreement then Rolando should be set to transfer to {{ $user->club }} within the next few days.</p>
                 </div>
             </div><!-- End Item -->
 
@@ -38,7 +38,7 @@
                 <img src="http://placehold.it/760x400/dddddd/333333">
                 <div class="carousel-caption">
                     <h4><a href="#">{{ $teamThree->name }} {{ $teamThreeStatus }}</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. <a class="label label-primary" href="http://sevenx.de/demo/bootstrap-carousel/" target="_blank">Free Bootstrap Carousel Collection</a></p>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. </p>
                 </div>
             </div><!-- End Item -->
 
