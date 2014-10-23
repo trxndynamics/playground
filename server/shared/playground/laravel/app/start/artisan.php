@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new FixtureGenerate);
+Artisan::add(new BackupDatabase);
