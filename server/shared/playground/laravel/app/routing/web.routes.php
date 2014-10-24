@@ -32,6 +32,7 @@ if(Sentry::check()){
     Route::group(array('prefix'=>'player'), function(){
         Route::get('/stats/{id}', 'PlayerController@stats');
         Route::get('/search', 'PlayerController@search');
+        Route::get('/search/{nationality}', 'PlayerController@search');
     });
 
     Route::group(array('prefix'=>'squad'), function(){
