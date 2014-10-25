@@ -132,7 +132,9 @@
                                     <label class="col-md-4 control-label" for="selectLeague">Select League</label>
                                     <div class="col-md-4">
                                         <select id="selectLeague" name="selectLeague" class="form-control">
-                                            <option value="1">Bundesliga</option>
+                                        @foreach($leagues as $league)
+                                            <option value="{{ $league }}">{{ $league }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -142,24 +144,9 @@
                                     <label class="col-md-4 control-label" for="selectClub">Select Club</label>
                                     <div class="col-md-4">
                                         <select id="selectClub" name="selectClub" class="form-control">
-                                            <option value="Bayer 04 Leverkusen">Bayer Leverkusen</option>
-                                            <option value="FC Bayern Munchen">FC Bayern Munchen</option>
-                                            <option value="Borussia Dortmund">Borussia Dortmund</option>
-                                            <option value="Borussia Mochengladbach">Borussia Mochengladbach</option>
-                                            <option value="FC Augsburg">FC Augsburg</option>
-                                            <option value="Eintracht Frankfurt">Eintracht Frankfurt</option>
-                                            <option value="SC Freiburg">SC Freiburg</option>
-                                            <option value="Hamburger SV">Hamburger SV</option>
-                                            <option value="Hannover 96">Hannover 96</option>
-                                            <option value="Hertha Berlin">Hertha Berlin</option>
-                                            <option value="TSG 1899 Hoffenheim">TSG 1899 Hoffenheim</option>
-                                            <option value="1. FC Koln">1. FC Koln</option>
-                                            <option value="1. FSV Mainz 05">1. FSV Mainz 05</option>
-                                            <option value="SC Paderborn 07">SC Paderborn 07</option>
-                                            <option value="FC Schalke 04">FC Schalke 04</option>
-                                            <option value="VfB Stuttgart">VfB Stuttgart</option>
-                                            <option value="SV Werder Bremen">SV Werder Bremen</option>
-                                            <option value="VfL Wolfsburg">VfL Wolfsburg</option>
+                                        @foreach($teams as $team)
+                                            <option value="{{ $team }}">{{ $team }}</option>
+                                        @endforeach
                                         </select>
                                     </div>
                                 </div>
