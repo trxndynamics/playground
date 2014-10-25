@@ -20,26 +20,6 @@ class FixtureGenerate extends Command {
      */
     protected $description = 'Generates a list of fixtures for a particular league';
 
-
-    /**
-     * Generates the fixtures
-     *
-     * @param int $quantityOfTeams
-     */
-    private function getFixtures($quantityOfTeams){
-        $fixtures = [];
-
-        for($i=0;$i<$quantityOfTeams; $i++){
-            for($j=0;$j<$quantityOfTeams;$j++){
-                if($j==$i)  continue;
-
-                $fixtures[$i][] = $j;
-            }
-        }
-
-        return $fixtures;
-    }
-
     /**
      * Create a new command instance.
      *
@@ -58,10 +38,8 @@ class FixtureGenerate extends Command {
     public function fire()
     {
         $startDateTimestamp = strtotime('second sat of august '.date('Y'));
-//        $endDateTimestamp   = strtotime('first sat of may '.date('Y'));
 
         $leagueName = 'Bundesliga';
-        $league     = League::where('name','=',$leagueName)->first();
         $teamList   = Team::where('league','=',$leagueName)->get();
         $arrTeams   = [];
 
@@ -70,9 +48,6 @@ class FixtureGenerate extends Command {
         }
 
         //get the start date and end date of football league calendar
-        $startDate  = \Carbon\Carbon::createFromTimestamp($startDateTimestamp);    //start date
-//        $endDate    = \Carbon\Carbon::createFromTimestamp($endDateTimestamp);        //end date
-
         $games = array();
         $teams = count($arrTeams);
 
@@ -83,18 +58,6 @@ class FixtureGenerate extends Command {
                 $games[$i][$j] = $this->getWeek($i, $j, $teams);
             }
         }
-
-
-        // display grid
-//        $max=0;
-//        foreach($games as $row) {
-//            foreach($row as $col) {
-//                printf('%4d', is_null($col) ? -2 : $col);
-//                if( $col > $max ) { $max=$col; }
-//            }
-//            echo "\n";
-//        }
-//        printf("%d teams in %d weeks, %.2f weeks per team\n", $teams, $max, $max/$teams);
 
         for($i=1; $i<=count($games); $i++){
             for($j=1; $j<=count($games); $j++){
