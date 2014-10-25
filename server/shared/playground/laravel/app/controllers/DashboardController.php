@@ -36,8 +36,8 @@ class DashboardController extends BaseController {
             ->with('aims', $aims)
             ->with('leagues', $leagues)
             ->with('hideNav', true)
-            ->with('teams', Team::where('league','Bundesliga')->lists('name'))
-            ->with('leagues', Team::groupBy('league')->lists('league'))
+            ->with('teams', Team::where('league','Bundesliga')->orderBy('name','ASC')->lists('name'))
+            ->with('leagues', Team::groupBy('league')->orderBy('league','ASC')->lists('league'))
         ;
     }
 
