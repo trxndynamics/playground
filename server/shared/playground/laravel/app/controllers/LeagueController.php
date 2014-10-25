@@ -54,8 +54,8 @@ class LeagueController extends BaseController {
                 }
 
                 $tableData[$teamName]['played']++;
-                $tableData[$teamName]['for']      = $match->getGoals($teamName, false);
-                $tableData[$teamName]['against']  = $match->getGoals($teamName, true);
+                $tableData[$teamName]['for']      += $match->getGoals($teamName, false);
+                $tableData[$teamName]['against']  += $match->getGoals($teamName, true);
             }
         }
 
