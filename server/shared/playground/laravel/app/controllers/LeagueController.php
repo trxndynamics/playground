@@ -28,7 +28,8 @@ class LeagueController extends BaseController {
                 'lost'      => 0,
                 'for'       => 0,
                 'against'   => 0,
-                'points'    => 0
+                'points'    => 0,
+                'form'      => $team->getForm(5)
             ];
         }
 
