@@ -106,7 +106,7 @@ class Player extends Moloquent {
             5 => 'Excellent'
         ];
 
-        $playerForm = (isset($this->form)) ? $this->form : rand(0,5);
+        $playerForm = (isset($this->form)) ? $this->form : rand(1,5);
 
         return ($verbose === true) ? $playerFormValues[$playerForm] : $playerForm;
     }

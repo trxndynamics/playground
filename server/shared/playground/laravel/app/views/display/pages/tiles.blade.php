@@ -82,19 +82,19 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <h3 class="tilecaption"><i class="fa fa-facebook-square fa-4x"></i> Facebook</h3>
+                            <h3 class="tilecaption"><i class="fa fa-facebook-square fa-4x"></i></h3>
                         </div>
                         <div class="item">
-                            <h3 class="tilecaption"><i class="fa fa-google-plus fa-4x"></i> Google+</h3>
+                            <h3 class="tilecaption"><i class="fa fa-google-plus fa-4x"></i></h3>
                         </div>
                         <div class="item">
-                            <h3 class="tilecaption"><i class="fa fa-twitter fa-4x"></i> Twitter</h3>
+                            <h3 class="tilecaption"><i class="fa fa-twitter fa-4x"></i></h3>
                         </div>
                         <div class="item">
-                            <h3 class="tilecaption"><i class="fa fa-digg fa-4x"></i> Digg</h3>
+                            <h3 class="tilecaption"><i class="fa fa-digg fa-4x"></i></h3>
                         </div>
                         <div class="item">
-                            <h3 class="tilecaption"><i class="fa fa-reddit fa-4x"></i> Reddit</h3>
+                            <h3 class="tilecaption"><i class="fa fa-reddit fa-4x"></i></h3>
                         </div>
                     </div>
                 </div>
