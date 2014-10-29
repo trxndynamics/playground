@@ -78,6 +78,10 @@ if(Sentry::check()){
         Route::get('/news', 'NotificationsController@news');
     });
 
+    Route::group(array('prefix'=>'test'), function(){
+        Route::get('/phaser', 'PhaserController@test');
+    });
+
     App::missing(function($exception){
         return Redirect::to('/start');
     });
