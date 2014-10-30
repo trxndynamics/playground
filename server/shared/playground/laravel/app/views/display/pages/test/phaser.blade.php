@@ -15,10 +15,10 @@
         <script type="text/javascript">
             window.onload = function() {
 
-                var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+                var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', { preload: preload, create: create });
 
                 function preload () {
-                    game.load.image('logo', 'phaser.png');
+                    game.load.image('logo', '/resource/images/examples/phaser.png');
                 }
 
                 function create () {
@@ -26,7 +26,8 @@
                     logo.anchor.setTo(0.5, 0.5);
                 }
             };
-            </script>
+        </script>
     </div>
+    <div id="game-container"></div>
 </div>
 @stop
