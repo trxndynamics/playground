@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
 
-                            <div class=" col-md-9 col-lg-9 ">
+                            <div class="col-md-9 col-lg-9">
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
@@ -50,6 +50,16 @@
                                     <tr>
                                         <td>Gender</td>
                                         <td>{{ $user->gender }}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Kits</td>
+                                        <td>
+                                            <img class="kit-display" src="{{ $user->goalkeeper_kit }}" /><br />Goalkeeper<br />
+                                            <img class="kit-display" src="{{ $user->home_kit }}" /><br />Home<br />
+                                            <img class="kit-display" src="{{ $user->away_kit }}" /><br />Away<br />
+                                            <img class="kit-display" src="{{ $user->third_kit }}" /><br />Third<br />
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
