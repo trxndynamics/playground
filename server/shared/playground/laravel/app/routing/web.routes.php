@@ -55,6 +55,7 @@ if(Sentry::check()){
         Route::get('/profile', 'UserController@profile');
         Route::get('/settings', 'UserController@settings');
         Route::get('/settings/fixtures/generate', 'SettingsController@fixtureGenerate');
+        Route::get('/settings/goals/generate', 'SettingsController@goalsGenerate');
         Route::get('/settings/results/generate', 'SettingsController@resultsGenerate');
         Route::get('/settings/player/fix', 'SettingsController@playerFix');
         Route::get('/settings/player/reviewPlayerCompete', 'SettingsController@reviewPlayerCompete');

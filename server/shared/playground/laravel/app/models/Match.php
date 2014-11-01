@@ -59,6 +59,37 @@ class Match extends Moloquent {
         $this->save();
     }
 
+    public function generateScorers($homeOrAway='home'){
+        if(!in_array($homeOrAway, ['home','away'])) return null;
+
+        if($this->getGoals($homeOrAway) > 0){
+            $team       = $this->getTeam($homeOrAway);
+            $players    = Player::where('misc.club',$team->name)->get();
+            $playerList = [];
+
+            /** @var Player $player */
+            foreach($players as $player){
+                if($player->misc['position'] == 'GK')   continue;
+
+                $playerList[] = $player->misc['name'];
+            }
+
+            if($homeOrAway == 'home'){
+                $homeScorers = [];
+                for($i=0; $i<$this->getGoals($homeOrAway); $i++){
+                    $homeScorers[] = $playerList[array_rand($playerList)];
+                }
+                $this->homeScorers = $homeScorers;
+            } elseif($homeOrAway == 'away'){
+                $awayScorers = [];
+                for($i=0; $i<$this->getGoals($homeOrAway); $i++){
+                    $awayScorers[] = $playerList[array_rand($playerList)];
+                }
+                $this->awayScorers = $awayScorers;
+            }
+        }
+    }
+
     public function getResult($displayType='overview', $verbose=true){
         if($displayType == $this->home)         $displayType = 'home';
         else if($displayType == $this->away)    $displayType = 'away';
