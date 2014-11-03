@@ -31,6 +31,7 @@
                     <th><input type="text" class="form-control" placeholder="Games Lost" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Goals For" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Goals Against" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Goals Difference" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Form" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Points" disabled></th>
                 </tr>
@@ -47,6 +48,7 @@
                     <td>{{ $tableDataItem['lost'] }}</td>
                     <td>{{ $tableDataItem['for'] }}</td>
                     <td>{{ $tableDataItem['against'] }}</td>
+                    <td>{{ $tableDataItem['for'] - $tableDataItem['against'] }}</td>
                     <td>{{ implode($tableDataItem['form']) }}</td>
                     <td>{{ $tableDataItem['points'] }}</td>
                 </tr>
