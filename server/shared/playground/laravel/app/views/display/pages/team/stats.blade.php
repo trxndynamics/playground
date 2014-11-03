@@ -28,18 +28,27 @@
                     <th><input type="text" class="form-control" placeholder="Appearances" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Goals" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Assists" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Goals Per Game" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Assists Per Game" disabled></th>
                     <th><input type="text" class="form-control" placeholder="MOTM" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Form" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($players as $id=>$player)
+                <?php
+                    $appearances    = $player->getAppearances();
+                    $goalsPerGame   = ($appearances > 0) ? round($player->getGoals() / $appearances,2) : 0;
+                    $assistsPerGame = ($appearances > 0) ? round($player->getAssists() / $appearances,2) : 0;
+                ?>
                 <tr>
                     <td>{{ $player->misc['position'] }}</td>
                     <td><img src="{{ $player->getImageFace() }}" /><a href="/player/stats/{{ $player->id }}">{{ $player->misc['name'] }}</a></td>
-                    <td>{{ $player->getAppearances() }}</td>
+                    <td>{{ $appearances }}</td>
                     <td>{{ $player->getGoals() }}</td>
                     <td>{{ $player->getAssists() }}</td>
+                    <td>{{ $goalsPerGame }}</td>
+                    <td>{{ $assistsPerGame }}</td>
                     <td>{{ $player->getMOTMs() }}</td>
                     <td>{{ $player->getForm(true) }}</td>
                 </tr>
