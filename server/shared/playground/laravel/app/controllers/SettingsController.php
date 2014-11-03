@@ -19,6 +19,19 @@ class SettingsController extends BaseController {
         return Redirect::to('/user/settings');
     }
 
+    public function assistsGenerate(){
+        $matches = Match::where('dateTimestamp','<',time())->get();
+
+        /** @var Match $match */
+        foreach($matches as $match){
+            $match->generateAssists('home');
+            $match->generateAssists('away');
+            $match->save();
+        }
+
+        return Redirect::to('/user/settings');
+    }
+
     public function goalsGenerate(){
         $matches = Match::where('dateTimestamp','<',time())->get();
 

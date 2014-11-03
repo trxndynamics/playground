@@ -144,7 +144,27 @@ class Player extends Moloquent {
      * @return int
      */
     public function getAssists(){
-        return rand(0,10);
+        $assists    = 0;
+        $matches    = Match::where('awayAssists', $this->misc['name'])
+            ->orWhere('homeAssists', $this->misc['name'])
+            ->get();
+
+        /** @var Match $match */
+        foreach($matches as $match){
+            $scorers = [];
+            if(isset($match->homeAssists))  $scorers[] = $match->homeAssists;
+            if(isset($match->awayAssists))  $scorers[] = $match->awayAssists;
+
+            foreach($scorers as $scorerType){
+                foreach($scorerType as $scorer){
+                    if($this->misc['name'] == $scorer){
+                        $assists++;
+                    }
+                }
+            }
+        }
+
+        return $assists;
     }
 
     /**

@@ -90,6 +90,35 @@ class Match extends Moloquent {
         }
     }
 
+    public function generateAssists($homeOrAway='home'){
+        if(!in_array($homeOrAway, ['home','away'])) return null;
+
+        if($this->getGoals($homeOrAway) > 0){
+            $team       = $this->getTeam($homeOrAway);
+            $players    = Player::where('misc.club',$team->name)->get();
+            $playerList = [];
+
+            /** @var Player $player */
+            foreach($players as $player){
+                $playerList[] = $player->misc['name'];
+            }
+
+            if($homeOrAway == 'home'){
+                $homeAssists = [];
+                for($i=0; $i<$this->getGoals($homeOrAway); $i++){
+                    $homeAssists[] = $playerList[array_rand($playerList)];
+                }
+                $this->homeAssists = $homeAssists;
+            } elseif($homeOrAway == 'away'){
+                $awayAssists = [];
+                for($i=0; $i<$this->getGoals($homeOrAway); $i++){
+                    $awayAssists[] = $playerList[array_rand($playerList)];
+                }
+                $this->awayAssists = $awayAssists;
+            }
+        }
+    }
+
     public function getResult($displayType='overview', $verbose=true){
         if($displayType == $this->home)         $displayType = 'home';
         else if($displayType == $this->away)    $displayType = 'away';
