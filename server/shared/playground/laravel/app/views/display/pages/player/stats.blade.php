@@ -15,9 +15,14 @@
         <h4>Main Stats</h4>
         <div class="col-lg-12">
             <div class="row">
+            <?php
+            $appearances    = $player->getAppearances();
+            $goalsPerGame   = ($appearances > 0) ? round($player->getGoals() / $appearances, 2) : 0;
+            $assistsPerGame = ($appearances > 0) ? round($player->getAssists() / $appearances, 2) : 0;
+            ?>
                 <div class="col-lg-4">
                     <div class="col-lg-12">Position: {{ $player->getPosition() }}</div>
-                    <div class="col-lg-12">Appearances: {{ $player->getAppearances() }}</div>
+                    <div class="col-lg-12">Appearances: {{ $appearances }}</div>
                     <div class="col-lg-12">Goals: {{ $player->getGoals() }}</div>
                     <div class="col-lg-12">Assists: {{ $player->getAssists() }}</div>
                     <div class="col-lg-12">Man Of The Match: {{ $player->getMOTMs() }}</div>
@@ -28,7 +33,10 @@
                     <div class="col-lg-12">Form: {{ $player->getForm(true) }}</div>
                     <div class="col-lg-12">Value: &pound;{{ $player->getValue() }}</div>
                 </div>
-                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="col-lg-12">Goals Per Game: {{ $goalsPerGame }}</div>
+                    <div class="col-lg-12">Assists Per Game: {{ $assistsPerGame }}</div>
+                </div>
             </div>
             <br />
             <div class="row">
