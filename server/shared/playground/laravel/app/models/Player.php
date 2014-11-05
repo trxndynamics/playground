@@ -198,7 +198,9 @@ class Player extends Moloquent {
 
     /** returns the number of man of the match appearances the player has received */
     public function getMOTMs(){
-        return rand(0,5);
+        $matches = Match::where('motm',$this->misc['name']);
+
+        return count($matches);
     }
 
     /**
