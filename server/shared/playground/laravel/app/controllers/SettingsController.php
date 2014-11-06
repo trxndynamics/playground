@@ -32,6 +32,26 @@ class SettingsController extends BaseController {
         return Redirect::to('/user/settings');
     }
 
+    public function motmGenerate(){
+        $matches = Match::where('dateTimestamp','<',time())->get();
+
+        foreach($matches as $match){
+            $teamName   = ($match->awayGoals > $match->homeGoals) ? $match->home : $match->away;
+
+            $players    = Player::where('misc.club',$teamName)->get();
+            $playerList = [];
+
+            foreach($players as $player){
+                $playerList[] = $player->misc['name'];
+            }
+
+            $match->motm = $playerList[array_rand($playerList)];
+            $match->save();
+        }
+
+        return Redirect::to('/user/settings');
+    }
+
     public function goalsGenerate(){
         $matches = Match::where('dateTimestamp','<',time())->get();
 

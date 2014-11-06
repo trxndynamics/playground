@@ -21,6 +21,7 @@
                 <a href="/user/settings/fixtures/generate">Generate Fixtures</a><br />
                 <a href="/user/settings/goals/generate">Generate Goals</a><br />
                 <a href="/user/settings/assists/generate">Generate Assists</a><br />
+                <a href="/user/settings/motm/generate">Generate MOTM</a><br />
                 <a href="/user/settings/results/generate">Generate Results</a><br />
                 <a href="/user/settings/player/fix">Fix Player Values</a><br />
                 <a href="/team/select-kit">Change Kit</a><br />
