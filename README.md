@@ -1,7 +1,12 @@
 playground
 ==========
 
-This is a workflow demo.  Please feel free to ignore areas that are of little interest to yourself.
+This was initially a workflow demo.  It has been expanded to be a Football Manager application built in PHP, Laravel and MongoDB.
+The initial setup (listed below) will get the workflow built as well as the application (which is under construction) up and running.
+
+The application is currently missing data so a few endpoints are not going to work.  I will get around to updating sample data but for now not everything is working as per expectation.
+
+Please feel free to ignore areas that are of little interest to yourself.
 
 Pre-requisites:
 
