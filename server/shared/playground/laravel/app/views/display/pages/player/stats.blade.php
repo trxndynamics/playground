@@ -34,6 +34,7 @@
                     <div class="col-lg-12">Value: &pound;{{ $player->getValue() }}</div>
                 </div>
                 <div class="col-lg-4">
+                    <div class="col-lg-12">Name On Shirt: {{ $player->getName('surname') }}</div>
                     <div class="col-lg-12">Goals Per Game: {{ $goalsPerGame }}</div>
                     <div class="col-lg-12">Assists Per Game: {{ $assistsPerGame }}</div>
                 </div>

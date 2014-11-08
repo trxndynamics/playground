@@ -371,4 +371,17 @@ class Player extends Moloquent {
 
         return $stats;
     }
+
+    public function getName($name='full'){
+        switch($name){
+            case 'forename':
+                return substr($this->misc['name'], 0, strpos($this->misc['name'], ' '));
+                break;
+            case 'surname':
+                return substr($this->misc['name'], strpos($this->misc['name'], ' ')+1);
+                break;
+        }
+
+        return $this->misc['name'];
+    }
 }

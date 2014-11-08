@@ -43,7 +43,7 @@
                 ?>
                 <tr>
                     <td>{{ $player->misc['position'] }}</td>
-                    <td><img src="{{ $player->getImageFace() }}" /><a href="/player/stats/{{ $player->id }}">{{ $player->misc['name'] }}</a></td>
+                    <td><img src="{{ $player->getImageFace() }}" /><a href="/player/stats/{{ $player->id }}">{{ $player->getName() }}</a></td>
                     <td>{{ $appearances }}</td>
                     <td>{{ $player->getGoals() }}</td>
                     <td>{{ $player->getAssists() }}</td>
