@@ -31,6 +31,7 @@
                     <th><input type="text" class="form-control" placeholder="Goals Per Game" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Assists Per Game" disabled></th>
                     <th><input type="text" class="form-control" placeholder="MOTM" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Status" disabled></th>
                     <th><input type="text" class="form-control" placeholder="Form" disabled></th>
                 </tr>
                 </thead>
@@ -50,6 +51,7 @@
                     <td>{{ $goalsPerGame }}</td>
                     <td>{{ $assistsPerGame }}</td>
                     <td>{{ $player->getMOTMs() }}</td>
+                    <td>{{ $player->getStatus() }}</td>
                     <td>{{ $player->getForm(true) }}</td>
                 </tr>
                 @endforeach

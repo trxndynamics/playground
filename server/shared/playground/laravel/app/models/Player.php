@@ -384,4 +384,15 @@ class Player extends Moloquent {
 
         return $this->misc['name'];
     }
+
+    public function getReturnDate(){
+        return (isset($this->returnDate)) ? $this->returnDate : null;
+    }
+
+    public function getStatus(){
+        $status     = rand(0,9);
+        $statuses   = ['National Duty', 'Injured'];
+
+        return ($status > 7) ? $statuses[array_rand($statuses)] : 'Eligible';
+    }
 }
