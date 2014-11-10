@@ -28,14 +28,16 @@ class TeamController extends BaseController {
     }
 
     public function notifications(){
-        $user   = Sentry::getUser();
-        $players = Player::where('misc.club','=',$user->club)->get();
+        $user       = Sentry::getUser();
+        $players    = Player::where('misc.club','=',$user->club)->get();
 
         return View::make('display/pages/team/notifications')->with('players',$players);
     }
 
-    public function finances(){
-        return View::make('display/pages/team/finances');
+    public function finances($teamName=null){
+        $team = Team::where('name', ($teamName === null) ? Sentry::getUser()->club : $teamName)->first();
+
+        return View::make('display/pages/team/finances')->with('team', $team);
     }
 
     public function selectKit($location=null){

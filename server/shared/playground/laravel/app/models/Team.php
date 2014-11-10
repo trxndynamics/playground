@@ -131,4 +131,25 @@ class Team extends Moloquent {
         //as the search is done in reverse order (descending from current date, we need to reverse the order returned)
         return array_reverse($form);
     }
+
+    /**
+     * returns the finances as recorded per month for the last twelve months
+     * @return array
+     */
+    public function getFinances(){
+        return [
+            "August"    => 1,
+            "September" => 2,
+            "October"   => 5,
+            "November"  => 8,
+            "December"  => 13,
+            "January"   => 10,
+            "February"  => 6,
+            "March"     => 7,
+            "April"     => 4,
+            "May"       => 6,
+            "June"      => 8,
+            "July"      => 8
+        ];
+    }
 }
