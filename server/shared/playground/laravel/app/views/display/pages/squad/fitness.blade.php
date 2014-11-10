@@ -12,6 +12,11 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-12">Injured: {{{ implode(', ', $injuredList) }}}</div>
+        <div class="col-lg-12">International Duty: {{{ implode(', ', $nationalDuty) }}}</div>
+    </div>
+
 <?php
 
 $processList = [
