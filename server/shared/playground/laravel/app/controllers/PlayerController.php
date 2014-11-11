@@ -24,8 +24,11 @@ class PlayerController extends BaseController {
 
     public function stats($id){
         $player = Player::find($id);
+        $team   = Team::where('name','=',$player->misc['club'])->first();
 
-        return View::make('display/pages/player/stats')->with('player',$player);
+        return View::make('display/pages/player/stats')
+            ->with('player',$player)
+            ->with('team',$team);
     }
 
 }

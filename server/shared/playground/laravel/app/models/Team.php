@@ -152,4 +152,17 @@ class Team extends Moloquent {
             "July"      => 8
         ];
     }
+
+    public function getNumberOfFixtures($team){
+        $user = Sentry::getUser();
+        $team = ($team === null) ? $team = $user->club : $team;
+        $team = Team::where('name','=',$team)->first();
+
+        $teamName   = ($team != null) ? $team->name : $user->club;
+        $matches    = Match::where('dateTimestamp','<',time())
+            ->where('teams','=',$teamName)
+            ->get();
+
+        return count($matches);
+    }
 }

@@ -22,7 +22,7 @@
             ?>
                 <div class="col-lg-4">
                     <div class="col-lg-12">Position: {{ $player->getPosition() }}</div>
-                    <div class="col-lg-12">Appearances: {{ $appearances }}</div>
+                    <div class="col-lg-12">Appearances: {{ $appearances }} (out of {{ $team->getNumberOfFixtures($player->misc['club']) }})</div>
                     <div class="col-lg-12">Goals: {{ $player->getGoals() }}</div>
                     <div class="col-lg-12">Assists: {{ $player->getAssists() }}</div>
                     <div class="col-lg-12">Man Of The Match: {{ $player->getMOTMs() }}</div>
