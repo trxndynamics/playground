@@ -17,7 +17,7 @@ $(document).ready(function(){
 
             playerList.append('<input type="hidden" name="player[]" value="'+$(this).data('id')+'" />');
             if(counter == 11){
-                playerList.append('<input type="submit">');
+                playerList.append('<input type="submit"  class="squadSelectSubmit">');
             }
         } else {
             alert('only 11 players can be selected');
@@ -39,7 +39,7 @@ $(document).ready(function(){
                 );
 
                 if(playerList.children('div').length == 11){
-                    playerList.append('<input type="submit">');
+                    playerList.append('<input type="submit" class="squadSelectSubmit">');
                 }
             } else {
                 alert('the same player cannot be added twice');
