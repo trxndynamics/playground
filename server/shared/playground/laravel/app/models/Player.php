@@ -395,4 +395,47 @@ class Player extends Moloquent {
 
         return ($status > 7) ? $statuses[array_rand($statuses)] : 'Eligible';
     }
+
+    /**
+     * returns x and y coordinates for default position
+     *
+     * @return array
+     */
+    public function getStartingPosition(){
+        switch(strtolower($this->getPosition())){
+            case 'gk':
+                return [70,0];
+                break;
+            case 'lb':
+            case 'lwb':
+                return [140,0];
+                break;
+            case 'rb':
+            case 'rwb':
+                return [210,0];
+                break;
+            case 'cb':
+                return [280,0];
+                break;
+            case 'cdm':
+            case 'cm':
+            case 'cam':
+                return [350,0];
+                break;
+            case 'lm':
+            case 'lw':
+            case 'lf':
+                return [420,0];
+                break;
+            case 'rm':
+            case 'rw':
+            case 'rf':
+                return [490,0];
+                break;
+            case 'cf':
+            case 'st':
+                return [560,0];
+                break;
+        }
+    }
 }
