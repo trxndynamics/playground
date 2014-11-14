@@ -69,6 +69,10 @@ foreach(['home','away'] as $homeOrAway){
                     var <?php echo $ref;?> = game.add.sprite(<?php echo $player['xpos'] ?>, <?php echo $player['ypos'] ?>, '<?php echo $ref; ?>');
                     <?php echo $ref; ?>.anchor.setTo(0.5, 0.5);
 
+                    <?php echo $ref; ?>.width = 100;
+                    <?php echo $ref; ?>.height = 100;
+                    <?php echo $ref; ?>.body.setSize(100,100);
+
                     <?php
                     } ?>
                 }
