@@ -11,6 +11,9 @@
 
 <?php
 
+$gameWidth = 1100;
+$gameHeight = 600;
+
 $teams = [
     'home' => ['name'=>'Bayern München'],
     'away' => ['name'=>'Borussia Dortmund']
@@ -21,16 +24,39 @@ foreach($teams as $key => &$team){
     $teams[$key]['squad']   = $teams[$key]['team']->generateSquad()['squad'];
 }
 
-$teamCounter = 1;
+$teamCounter    = 1;
+
 foreach(['home','away'] as $homeOrAway){
-    $counter = 1;
+    $quantities     = [];
+    $counter        = 1;
+
     foreach($teams[$homeOrAway]['squad'] as $name => $player){
-        $coordinates = $player->getStartingPosition();
+        $position = $player->getPosition();
+
+        if(isset($quantities[$position])){
+            $quantities[$position]++;
+        } else {
+            $quantities[$position] = 1;
+        }
+    }
+
+    foreach($teams[$homeOrAway]['squad'] as $name => $player){
+        $position       = $player->getPosition();
+        $coordinates    = $player->getStartingPosition();
+        $ypos           = $coordinates[1];
+
+        if(isset($quantities[$position])){
+            $ypos += 75;
+            if($quantities[$position] > 1){
+                $ypos += $quantities[$position] * 75;
+                $quantities[$position]--;
+            }
+        }
 
         $players['t'.$teamCounter.'p'.$counter] = [
             'src'   => $player->getImageFace(),
-            'xpos'  => $coordinates[0],
-            'ypos'  => 100 * $teamCounter
+            'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $gameWidth - $coordinates[0],
+            'ypos'  => $ypos
         ];
         $counter++;
     }
@@ -46,7 +72,7 @@ foreach(['home','away'] as $homeOrAway){
         <script type="text/javascript">
             window.onload = function() {
 
-                var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game-container', { preload: preload, create: create });
+                var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create });
 
                 function preload () {
                     game.load.image('logo', '/resource/images/examples/phaser.png');
@@ -57,8 +83,7 @@ foreach(['home','away'] as $homeOrAway){
                 }
 
                 function create () {
-                    var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'logo');
-                    logo.anchor.setTo(0.5, 0.5);
+                    game.stage.backgroundColor = '#1EB320'
 
                     <?php
                      $offset = 0;
@@ -69,9 +94,9 @@ foreach(['home','away'] as $homeOrAway){
                     var <?php echo $ref;?> = game.add.sprite(<?php echo $player['xpos'] ?>, <?php echo $player['ypos'] ?>, '<?php echo $ref; ?>');
                     <?php echo $ref; ?>.anchor.setTo(0.5, 0.5);
 
-                    <?php echo $ref; ?>.width = 100;
-                    <?php echo $ref; ?>.height = 100;
-                    <?php echo $ref; ?>.body.setSize(100,100);
+                    <?php echo $ref; ?>.width = 50;
+                    <?php echo $ref; ?>.height = 50;
+                    <?php echo $ref; ?>.body.setSize(50,50);
 
                     <?php
                     } ?>

@@ -404,37 +404,51 @@ class Player extends Moloquent {
     public function getStartingPosition(){
         switch(strtolower($this->getPosition())){
             case 'gk':
-                return [70,0];
+                return [50,225];
                 break;
             case 'lb':
             case 'lwb':
-                return [140,0];
+                return [190,0];
                 break;
             case 'rb':
             case 'rwb':
-                return [210,0];
+                return [190,450];
                 break;
             case 'cb':
-                return [280,0];
+                return [190,150];
                 break;
             case 'cdm':
+                return [330,225];
+                break;
             case 'cm':
+                return [400,225];
+                break;
             case 'cam':
-                return [350,0];
+                return [430,225];
                 break;
             case 'lm':
+                return [380,0];
+                break;
             case 'lw':
+                return [430,0];
+                break;
             case 'lf':
-                return [420,0];
+                return [470,0];
                 break;
             case 'rm':
+                return [380,450];
+                break;
             case 'rw':
+                return [430,450];
+                break;
             case 'rf':
-                return [490,0];
+                return [470,450];
                 break;
             case 'cf':
+                return [480,150];
+                break;
             case 'st':
-                return [560,0];
+                return [500,150];
                 break;
         }
     }
