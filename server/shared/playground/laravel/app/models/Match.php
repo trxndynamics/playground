@@ -168,4 +168,18 @@ class Match extends Moloquent {
 
         return $team;
     }
+
+    public function getMatchBall($league=null){
+        switch(strtolower($league)){
+            case "bundesliga":
+                return app_images_matchball_path(false).'mitre/delta-v12.png';
+                break;
+            case "eredivisie":
+                return app_images_matchball_path(false).'derbystar/brilliant-aps-eredivisie.png';
+                break;
+            default:
+                return app_images_matchball_path(false).'mitre/delta-v12.png';
+                break;
+        }
+    }
 }

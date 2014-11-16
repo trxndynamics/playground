@@ -62,3 +62,19 @@ if ( !function_exists('app_images_match_path'))
         return ($incPublicPath===true) ? public_path().'/resource/images/match/' : '/resource/images/match/';
     }
 }
+
+if ( ! function_exists('app_images_matchball_path'))
+{
+    function app_images_matchball_path($incPublicPath=true)
+    {
+        return ($incPublicPath===true) ? public_path().'/resource/images/balls/' : '/resource/images/balls/';
+    }
+}
+
+if ( ! function_exists('app_images_pitch_path'))
+{
+    function app_images_pitch_path($incPublicPath=true)
+    {
+        return ($incPublicPath===true) ? public_path().'/resource/images/pitch/' : '/resource/images/pitch/';
+    }
+}

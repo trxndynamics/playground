@@ -14,9 +14,19 @@
 $gameWidth = 1100;
 $gameHeight = 600;
 
+$match      = Match::first();
+$matchball  = $match->getMatchBall();
+
+$ballAttributes = [
+    'xpos'      => ($gameWidth / 2) - 15,
+    'ypos'      => ($gameHeight / 2) - 15,
+    'width'     => 30,
+    'height'    => 30
+];
+
 $teams = [
     'home' => ['name'=>'Bayern München'],
-    'away' => ['name'=>'Borussia Dortmund']
+    'away' => ['name'=>'Bayer 04 Leverkusen']
 ];
 
 foreach($teams as $key => &$team){
@@ -24,7 +34,7 @@ foreach($teams as $key => &$team){
     $teams[$key]['squad']   = $teams[$key]['team']->generateSquad()['squad'];
 }
 
-$teamCounter    = 1;
+$teamCounter = 1;
 
 foreach(['home','away'] as $homeOrAway){
     $quantities     = [];
@@ -76,6 +86,8 @@ foreach(['home','away'] as $homeOrAway){
 
                 function preload () {
                     game.load.image('logo', '/resource/images/examples/phaser.png');
+                    game.load.image('matchball', '{{ $matchball }}');
+                    game.load.image('pitch', '/resource/images/pitch/football_pitch-wallpaper-1440x900.jpg');
 
                     <?php   foreach($players as $ref=>$player){ ?>
                     game.load.image('<?php echo $ref; ?>', '<?php echo $player["src"]; ?>');
@@ -83,7 +95,17 @@ foreach(['home','away'] as $homeOrAway){
                 }
 
                 function create () {
-                    game.stage.backgroundColor = '#1EB320'
+                    game.stage.backgroundColor = '#1EB320';
+
+                    var pitch = game.add.sprite(0,0,'pitch');
+                    var matchball = game.add.sprite({{ $ballAttributes['xpos'] }}, {{ $ballAttributes['ypos'] }}, 'matchball');
+
+                    pitch.width = {{ $gameWidth }};
+                    pitch.height = {{ $gameHeight }};
+
+                    matchball.width = {{ $ballAttributes['width'] }};
+                    matchball.height = {{ $ballAttributes['height'] }};
+                    matchball.body.setSize({{ $ballAttributes['width'] }}, {{ $ballAttributes['height'] }});
 
                     <?php
                      $offset = 0;
