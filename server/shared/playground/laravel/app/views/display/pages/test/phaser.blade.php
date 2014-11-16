@@ -83,6 +83,7 @@ foreach(['home','away'] as $homeOrAway){
             window.onload = function() {
 
                 var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create });
+                var matchball;
 
                 function preload () {
                     game.load.image('logo', '/resource/images/examples/phaser.png');
@@ -95,10 +96,11 @@ foreach(['home','away'] as $homeOrAway){
                 }
 
                 function create () {
+
                     game.stage.backgroundColor = '#1EB320';
 
                     var pitch = game.add.sprite(0,0,'pitch');
-                    var matchball = game.add.sprite({{ $ballAttributes['xpos'] }}, {{ $ballAttributes['ypos'] }}, 'matchball');
+                    matchball = game.add.sprite({{ $ballAttributes['xpos'] }}, {{ $ballAttributes['ypos'] }}, 'matchball');
 
                     pitch.width = {{ $gameWidth }};
                     pitch.height = {{ $gameHeight }};
@@ -122,6 +124,18 @@ foreach(['home','away'] as $homeOrAway){
 
                     <?php
                     } ?>
+
+                    game.physics.startSystem(Phaser.Physics.Arcade);
+                    game.physics.enable(matchball, Phaser.Physics.Arcade);
+                    matchball.body.allowRotation = false;
+                }
+
+                function update(){
+                    matchball.rotation = game.physics.arcade.moveToPointer(matchball, 60, game.input.activePointer, 500);
+                }
+
+                function render(){
+                    game.debug.spriteInfo(matchball, 32, 32);
                 }
             };
         </script>
