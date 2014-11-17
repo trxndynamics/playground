@@ -96,7 +96,7 @@ foreach(['home','away'] as $homeOrAway){
                 }
 
                 function create () {
-
+                    game.physics.startSystem(Phaser.Physics.ARCADE);
                     game.stage.backgroundColor = '#1EB320';
 
                     var pitch = game.add.sprite(0,0,'pitch');
@@ -107,7 +107,6 @@ foreach(['home','away'] as $homeOrAway){
 
                     matchball.width = {{ $ballAttributes['width'] }};
                     matchball.height = {{ $ballAttributes['height'] }};
-                    matchball.body.setSize({{ $ballAttributes['width'] }}, {{ $ballAttributes['height'] }});
 
                     <?php
                      $offset = 0;
@@ -120,13 +119,11 @@ foreach(['home','away'] as $homeOrAway){
 
                     <?php echo $ref; ?>.width = 50;
                     <?php echo $ref; ?>.height = 50;
-                    <?php echo $ref; ?>.body.setSize(50,50);
 
                     <?php
                     } ?>
 
-                    game.physics.startSystem(Phaser.Physics.Arcade);
-                    game.physics.enable(matchball, Phaser.Physics.Arcade);
+                    game.physics.enable(matchball, Phaser.Physics.ARCADE);
                     matchball.body.allowRotation = false;
                 }
 
