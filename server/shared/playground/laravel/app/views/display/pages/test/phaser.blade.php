@@ -26,7 +26,7 @@ $ballAttributes = [
 
 $teams = [
     'home' => ['name'=>'Bayern München'],
-    'away' => ['name'=>'Bayer 04 Leverkusen']
+    'away' => ['name'=>'Eintracht Frankfurt']
 ];
 
 foreach($teams as $key => &$team){
@@ -82,7 +82,7 @@ foreach(['home','away'] as $homeOrAway){
         <script type="text/javascript">
             window.onload = function() {
 
-                var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create });
+                var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create, update: update, render: render });
                 var matchball;
 
                 function preload () {
@@ -132,7 +132,7 @@ foreach(['home','away'] as $homeOrAway){
                 }
 
                 function render(){
-                    game.debug.spriteInfo(matchball, 32, 32);
+//                    game.debug.spriteInfo(matchball, 32, 32);
                 }
             };
         </script>

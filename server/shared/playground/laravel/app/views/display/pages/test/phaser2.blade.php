@@ -9,6 +9,73 @@
 
 @section('content')
 
+<?php
+
+$gameWidth = 1100;
+$gameHeight = 600;
+
+$match      = Match::first();
+$matchball  = $match->getMatchBall();
+
+$ballAttributes = [
+    'xpos'      => ($gameWidth / 2) - 15,
+    'ypos'      => ($gameHeight / 2) - 15,
+    'width'     => 30,
+    'height'    => 30
+];
+
+$teams = [
+    'home' => ['name'=>'Bayern München'],
+    'away' => ['name'=>'Bayer 04 Leverkusen']
+];
+
+foreach($teams as $key => &$team){
+    $teams[$key]['team']    = Team::where('name','=',$team['name'])->first();
+    $teams[$key]['squad']   = $teams[$key]['team']->generateSquad()['squad'];
+}
+
+$teamCounter = 1;
+
+foreach(['home','away'] as $homeOrAway){
+    $quantities     = [];
+    $counter        = 1;
+
+    foreach($teams[$homeOrAway]['squad'] as $name => $player){
+        $position = $player->getPosition();
+
+        if(isset($quantities[$position])){
+            $quantities[$position]++;
+        } else {
+            $quantities[$position] = 1;
+        }
+    }
+
+    foreach($teams[$homeOrAway]['squad'] as $name => $player){
+        $position       = $player->getPosition();
+        $coordinates    = $player->getStartingPosition();
+        $ypos           = $coordinates[1];
+
+        if(isset($quantities[$position])){
+            $ypos += 75;
+            if($quantities[$position] > 1){
+                $ypos += $quantities[$position] * 75;
+                $quantities[$position]--;
+            }
+        }
+
+        $players['t'.$teamCounter.'p'.$counter] = [
+            'src'   => $player->getImageFace(),
+            'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $gameWidth - $coordinates[0],
+            'ypos'  => $ypos
+        ];
+        $counter++;
+    }
+    $teamCounter++;
+}
+
+
+?>
+
 <div class="container">
     <h3>Phaser Example</h3>
     <hr>
@@ -28,7 +95,7 @@
             sprite = game.add.sprite(400, 300, 'arrow');
             sprite.anchor.setTo(0.5, 0.5);
             game.physics.enable(sprite, Phaser.Physics.ARCADE);
-            sprite.body.allowRotation = false;
+            sprite.body.allowRotation = true;
         }
 
         function update() {
