@@ -68,7 +68,8 @@ foreach(['home','away'] as $homeOrAway){
             'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $gameWidth - $coordinates[0],
             'ypos'  => $ypos,
             'name'  => $player->misc['name'],
-            'position' => strtolower($player->getPosition())
+            'position' => strtolower($player->getPosition()),
+            'speed' => isset($player->attributes['sprint speed']) ? $player->attributes['sprint speed'] : '00'
         ];
         $counter++;
     }
@@ -144,6 +145,7 @@ foreach(['home','away'] as $homeOrAway){
 
                     <?php echo $ref; ?>.width = 50;
                     <?php echo $ref; ?>.height = 50;
+                    game.physics.enable(<?php echo $ref; ?>, Phaser.Physics.ARCADE);
 
                     <?php
                     } ?>
@@ -166,6 +168,7 @@ foreach(['home','away'] as $homeOrAway){
                     if(checkOverlap(matchball, {{ $ref }})){
                         lastplayertouched = '{{ $player['name']; }}';
                     }
+                    <?php echo $ref; ?>.rotation = game.physics.arcade.moveToObject(<?php echo $ref; ?>, matchball, 60, 1<?php echo $player['speed']; ?>0);
                     <?php } ?>
 
                     if (checkOverlap(matchball, leftgoalline)){
