@@ -66,7 +66,9 @@ foreach(['home','away'] as $homeOrAway){
         $players['t'.$teamCounter.'p'.$counter] = [
             'src'   => $player->getImageFace(),
             'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $gameWidth - $coordinates[0],
-            'ypos'  => $ypos
+            'ypos'  => $ypos,
+            'name'  => $player->misc['name'],
+            'position' => strtolower($player->getPosition())
         ];
         $counter++;
     }
@@ -76,7 +78,8 @@ foreach(['home','away'] as $homeOrAway){
 
 ?>
 <div class="container">
-    <h3>Phaser Example</h3>
+    <h3>{{ $teams['home']['name'] }} <span id="homeScore">0</span> - <span id="awayScore">0</span> {{ $teams['away']['name'] }}</h3>
+    <h4><span id="scorers"></span></h4>
     <hr>
     <div class="row">
         <script type="text/javascript">
@@ -84,11 +87,26 @@ foreach(['home','away'] as $homeOrAway){
 
                 var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create, update: update, render: render });
                 var matchball;
+                var leftgoalline;
+                var rightgoalline;
+                var pitch;
+                var text;
+                var homegoals = 0;
+                var awaygoals = 0;
+                var goalregistered = false;
+                var lastplayertouched = '';
+                var scorers = [];
+
+                <?php foreach($players as $ref=>$player){ ?>
+                var {{ $ref }};
+                <?php } ?>
 
                 function preload () {
                     game.load.image('logo', '/resource/images/examples/phaser.png');
                     game.load.image('matchball', '{{ $matchball }}');
                     game.load.image('pitch', '/resource/images/pitch/football_pitch-wallpaper-1440x900.jpg');
+                    game.load.image('leftgoalline', '/resource/images/misc/transparent/transparency10.png');
+                    game.load.image('rightgoalline', '/resource/images/misc/transparent/transparency10.png');
 
                     <?php   foreach($players as $ref=>$player){ ?>
                     game.load.image('<?php echo $ref; ?>', '<?php echo $player["src"]; ?>');
@@ -97,10 +115,17 @@ foreach(['home','away'] as $homeOrAway){
 
                 function create () {
                     game.physics.startSystem(Phaser.Physics.ARCADE);
-                    game.stage.backgroundColor = '#1EB320';
 
-                    var pitch = game.add.sprite(0,0,'pitch');
+                    pitch = game.add.sprite(0,0,'pitch');
                     matchball = game.add.sprite({{ $ballAttributes['xpos'] }}, {{ $ballAttributes['ypos'] }}, 'matchball');
+                    leftgoalline = game.add.sprite(55,260,'leftgoalline');
+                    rightgoalline = game.add.sprite({{ $gameWidth - 58 }},260,'rightgoalline');
+
+                    leftgoalline.width = 5;
+                    leftgoalline.height = 80;
+
+                    rightgoalline.width = 5;
+                    rightgoalline.height = 80;
 
                     pitch.width = {{ $gameWidth }};
                     pitch.height = {{ $gameHeight }};
@@ -114,7 +139,7 @@ foreach(['home','away'] as $homeOrAway){
                         $offset += 70;
                     ?>
 
-                    var <?php echo $ref;?> = game.add.sprite(<?php echo $player['xpos'] ?>, <?php echo $player['ypos'] ?>, '<?php echo $ref; ?>');
+                    <?php echo $ref;?> = game.add.sprite(<?php echo $player['xpos'] ?>, <?php echo $player['ypos'] ?>, '<?php echo $ref; ?>');
                     <?php echo $ref; ?>.anchor.setTo(0.5, 0.5);
 
                     <?php echo $ref; ?>.width = 50;
@@ -124,11 +149,54 @@ foreach(['home','away'] as $homeOrAway){
                     } ?>
 
                     game.physics.enable(matchball, Phaser.Physics.ARCADE);
+                    game.physics.enable(leftgoalline, Phaser.Physics.ARCADE);
+                    game.physics.enable(rightgoalline, Phaser.Physics.ARCADE);
+
                     matchball.body.allowRotation = false;
+
+                    text = game.add.text(16, 16, '', { fill: '#ffffff' });
                 }
 
                 function update(){
-                    matchball.rotation = game.physics.arcade.moveToPointer(matchball, 60, game.input.activePointer, 500);
+                    matchball.rotation = game.physics.arcade.moveToPointer(matchball, 150, game.input.activePointer, 500);
+
+                    <?php foreach($players as $ref => $player){
+                    if($player['position'] == 'gk') continue;
+                    ?>
+                    if(checkOverlap(matchball, {{ $ref }})){
+                        lastplayertouched = '{{ $player['name']; }}';
+                    }
+                    <?php } ?>
+
+                    if (checkOverlap(matchball, leftgoalline)){
+                        if(goalregistered != true){
+                            homegoals++;
+                            goalregistered = true;
+                            $('#homeScore').text(homegoals);
+                            scorers.push(lastplayertouched);
+                            text.text = 'Goal: <?php echo $teams['home']['name']; ?> '+lastplayertouched;
+                            $('#scorers').text(scorers);
+                        }
+                    } else if (checkOverlap(matchball, rightgoalline)){
+                        if(goalregistered != true){
+                            awaygoals++;
+                            $('#awayScore').text(awaygoals);
+                            goalregistered = true;
+                            scorers.push(lastplayertouched);
+                            text.text = 'Goal: <?php echo $teams['away']['name']; ?> '+lastplayertouched;
+                            $('#scorers').text(scorers);
+                        }
+                    } else {
+                        text.text = '';
+                        goalregistered = false;
+                    }
+
+                }
+
+                function checkOverlap(spriteA, spriteB) {
+                    var boundsA = spriteA.getBounds();
+                    var boundsB = spriteB.getBounds();
+                    return Phaser.Rectangle.intersects(boundsA, boundsB);
                 }
 
                 function render(){
