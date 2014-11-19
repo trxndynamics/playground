@@ -135,9 +135,7 @@ foreach(['home','away'] as $homeOrAway){
                     matchball.height = {{ $ballAttributes['height'] }};
 
                     <?php
-                     $offset = 0;
                     foreach($players as $ref => $player){
-                        $offset += 70;
                     ?>
 
                     <?php echo $ref;?> = game.add.sprite(<?php echo $player['xpos'] ?>, <?php echo $player['ypos'] ?>, '<?php echo $ref; ?>');
@@ -168,7 +166,17 @@ foreach(['home','away'] as $homeOrAway){
                     if(checkOverlap(matchball, {{ $ref }})){
                         lastplayertouched = '{{ $player['name']; }}';
                     }
-                    <?php echo $ref; ?>.rotation = game.physics.arcade.moveToObject(<?php echo $ref; ?>, matchball, 60, 1<?php echo $player['speed']; ?>0);
+
+                    var distance = game.physics.arcade.distanceBetween(matchball, <?php echo $ref; ?>);
+                    if(distance < 150){
+                        <?php echo $ref; ?>.body.moves = true;
+                        <?php echo $ref; ?>.rotation = game.physics.arcade.moveToObject(<?php echo $ref; ?>, matchball, 60, 1<?php echo $player['speed']; ?>0);
+                    } else {
+                        <?php echo $ref; ?>.body.moves = false;
+                        <?php echo $ref; ?>.body.velocity.x = 0;
+                        <?php echo $ref; ?>.body.velocity.y = 0;
+                    }
+
                     <?php } ?>
 
                     if (checkOverlap(matchball, leftgoalline)){
