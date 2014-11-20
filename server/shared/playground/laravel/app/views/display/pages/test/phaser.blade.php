@@ -11,43 +11,22 @@
 
 <?php
 
-$gameWidth = 1100;
-$gameHeight = 600;
-
-$match      = Match::first();
-$matchball  = $match->getMatchBall();
-
-$ballAttributes = [
-    'xpos'      => ($gameWidth / 2) - 15,
-    'ypos'      => ($gameHeight / 2) - 15,
-    'width'     => 30,
-    'height'    => 30
-];
-
-$teams = [
-    'home' => ['name'=>'Bayern München'],
-    'away' => ['name'=>'Eintracht Frankfurt']
-];
+$ballAttributes = $config['matchball'];
+$teams          = $config['teams'];
+$teamCounter    = 1;
 
 foreach($teams as $key => &$team){
     $teams[$key]['team']    = Team::where('name','=',$team['name'])->first();
     $teams[$key]['squad']   = $teams[$key]['team']->generateSquad()['squad'];
 }
 
-$teamCounter = 1;
-
 foreach(['home','away'] as $homeOrAway){
     $quantities     = [];
     $counter        = 1;
 
     foreach($teams[$homeOrAway]['squad'] as $name => $player){
-        $position = $player->getPosition();
-
-        if(isset($quantities[$position])){
-            $quantities[$position]++;
-        } else {
-            $quantities[$position] = 1;
-        }
+        $position               = $player->getPosition();
+        $quantities[$position]  = isset($quantities[$position]) ? $quantities[$position] + 1 : 1;
     }
 
     foreach($teams[$homeOrAway]['squad'] as $name => $player){
@@ -65,7 +44,7 @@ foreach(['home','away'] as $homeOrAway){
 
         $players['t'.$teamCounter.'p'.$counter] = [
             'src'   => $player->getImageFace(),
-            'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $gameWidth - $coordinates[0],
+            'xpos'  => ($teamCounter == 1) ? $coordinates[0] : $viewport['width'] - $coordinates[0],
             'ypos'  => $ypos,
             'name'  => $player->misc['name'],
             'position' => strtolower($player->getPosition()),
@@ -85,18 +64,19 @@ foreach(['home','away'] as $homeOrAway){
     <div class="row">
         <script type="text/javascript">
             window.onload = function() {
+                var game = new Phaser.Game({{ $viewport['width'] }}, {{ $viewport['height'] }}, Phaser.AUTO, 'game-container', { preload: preload, create: create, update: update, render: render });
 
-                var game = new Phaser.Game({{ $gameWidth }}, {{ $gameHeight }}, Phaser.AUTO, 'game-container', { preload: preload, create: create, update: update, render: render });
-                var matchball;
-                var leftgoalline;
-                var rightgoalline;
-                var pitch;
-                var text;
-                var homegoals = 0;
-                var awaygoals = 0;
-                var goalregistered = false;
-                var lastplayertouched = '';
-                var scorers = [];
+                var matchball,
+                    leftgoalline,
+                    rightgoalline,
+                    pitch,
+                    text,
+                    homegoals = 0,
+                    awaygoals = 0,
+                    scorers = [],
+                    goalregistered = false,
+                    lastplayertouched = ''
+                ;
 
                 <?php foreach($players as $ref=>$player){ ?>
                 var {{ $ref }};
@@ -104,7 +84,7 @@ foreach(['home','away'] as $homeOrAway){
 
                 function preload () {
                     game.load.image('logo', '/resource/images/examples/phaser.png');
-                    game.load.image('matchball', '{{ $matchball }}');
+                    game.load.image('matchball', '{{ $match->getMatchBall() }}');
                     game.load.image('pitch', '/resource/images/pitch/football_pitch-wallpaper-1440x900.jpg');
                     game.load.image('leftgoalline', '/resource/images/misc/transparent/transparency10.png');
                     game.load.image('rightgoalline', '/resource/images/misc/transparent/transparency10.png');
@@ -118,9 +98,9 @@ foreach(['home','away'] as $homeOrAway){
                     game.physics.startSystem(Phaser.Physics.ARCADE);
 
                     pitch = game.add.sprite(0,0,'pitch');
-                    matchball = game.add.sprite({{ $ballAttributes['xpos'] }}, {{ $ballAttributes['ypos'] }}, 'matchball');
+                    matchball = game.add.sprite({{ $ballAttributes['x'] }}, {{ $ballAttributes['y'] }}, 'matchball');
                     leftgoalline = game.add.sprite(55,260,'leftgoalline');
-                    rightgoalline = game.add.sprite({{ $gameWidth - 58 }},260,'rightgoalline');
+                    rightgoalline = game.add.sprite({{ $viewport['width'] - 58 }},260,'rightgoalline');
 
                     leftgoalline.width = 5;
                     leftgoalline.height = 80;
@@ -128,8 +108,8 @@ foreach(['home','away'] as $homeOrAway){
                     rightgoalline.width = 5;
                     rightgoalline.height = 80;
 
-                    pitch.width = {{ $gameWidth }};
-                    pitch.height = {{ $gameHeight }};
+                    pitch.width = {{ $viewport['width'] }};
+                    pitch.height = {{ $viewport['height'] }};
 
                     matchball.width = {{ $ballAttributes['width'] }};
                     matchball.height = {{ $ballAttributes['height'] }};
