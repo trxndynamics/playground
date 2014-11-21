@@ -45,6 +45,11 @@
                     <div class="col-lg-12">Current Status: {{ $player->getQuote() }}</div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">Match Eligibility Status: {{ $player->getStatus() }}</div>
+                </div>
+            </div>
         </div>
     </div>
     <br />
