@@ -6,8 +6,13 @@
 
 @section('content')
 <div class="container">
-    <h3>League Calendar: <a href="/fixture/create">Create Fixture</a> <a href="/league/results">View Results</a> <a href="/league/calendar">View Fixtures</a></h3>
-    <hr>
+    <h3 style="float:left">League Calendar</h3>
+    <div style="float:right">
+        <a href="/fixture/create">Create Fixture</a><br />
+        <a href="/league/results">View Results</a><br />
+        <a href="/league/calendar">View Fixtures</a>
+    </div>
+
     <div class="row">
         <div class=" col-xs-12 col-sm-offset-2 col-sm-8 ">
             <ul class="event-list">
