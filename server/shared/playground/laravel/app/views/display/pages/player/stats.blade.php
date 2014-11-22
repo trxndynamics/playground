@@ -7,8 +7,10 @@
 @section('content')
 <div id="page-wrapper">
     <div class="row">
-        <div class="col-lg-12">
-            <h1><img src="{{ $player->getImageFace() }}" width="100" /> <img src="{{ $player->getImageNation() }}" width="100" /> {{ $player->misc['name'] }} <small>Statistics and more</small></h1>
+        <div class="col-lg-12 player-stats-head">
+            <img id="player-face" src="{{ $player->getImageFace() }}" />
+            <img id="player-nation" src="{{ $player->getImageNation() }}"  />
+            <h1>{{ $player->misc['name'] }}<br /> <small>Statistics and more</small></h1>
         </div>
     </div>
     <div class="row">

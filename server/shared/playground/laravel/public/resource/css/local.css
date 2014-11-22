@@ -6295,3 +6295,18 @@ nav img.crest-display { margin-top:5px; width:30px;}
 .squadSelectSubmit {
     color:#000000;
 }
+
+.player-stats-head > img#player-face {
+    float:left;
+    width:100px;
+}
+
+.player-stats-head > img#player-nation {
+    width:100px;
+    float:left;
+    margin: 20px 10px 0 10px;
+}
+
+.player-stats-head > h1 {
+    float:left;
+}
